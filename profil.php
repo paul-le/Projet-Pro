@@ -27,21 +27,15 @@
 </head>
 <body>
 	<main>
-		<form method="post" action="">
-			Login : <input type="text" name="updateLogin" placeholder="<?php echo $user[0][1]; ?>"><br />
-			<label>Mot de passe</label>   : <input type="password" name="updatePassword"><br />
-			<label>Confirmation mot de passe</label>  : <input type="password" name="updateConfPassword"><br />
+		
 
-			<input type="submit" name="updateInfo" value="Modifier">
-		</form>
-
-		<!-- Button trigger modal
+		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
 			Modifier information  ?
-		</button>  -->
+		</button> 
 
 		<!-- Modal -->
-		<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -61,53 +55,62 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" name="updateInfo">Save changes</button>
+							<!-- <button type="button" class="btn btn-primary" name="updateInfo">Save changes</button> -->
+							<input type="submit" class="btn btn-primary" name="updateInfo">
+
 						</div>
+							<?php
+
+							if (isset($_POST['updateInfo'])) 
+							{
+								$loginUpdate = $_POST['updateLogin'];
+								$passwordUpdate = $_POST['updatePassword'];
+								$updateConfPassword = $_POST['updateConfPassword'];
+
+
+								$login = $bdd->execute("SELECT login FROM utilisateurs WHERE login = '$loginUpdate'");
+								
+								
+								$id = $_SESSION['id'];
+								
+								
+								if (!empty($loginUpdate) && !empty($login))             
+								{                 
+									echo "Ce Login est déjà prit"; 
+
+								}
+								elseif (empty($login) && !empty($loginUpdate)) 
+								{
+									
+									$updateLogin = $bdd->executeonly("UPDATE utilisateurs SET login = '$loginUpdate' WHERE id= '$id'");
+									
+									  
+								}
+								
+								if(!empty($passwordUpdate))
+								{
+									if ($passwordUpdate == $updateConfPassword) 
+									{
+										$mdpHash = password_hash($passwordUpdate, PASSWORD_BCRYPT, array('cost' => 12));
+
+										$updatePassword = $bdd->executeonly("UPDATE utilisateurs SET password ='$mdpHash' WHERE id = '$id' ");
+										
+									}
+									else
+									{
+										echo "Les mots de passes sont différents !";
+									}
+									
+								}
+								
+							}
+							?>
 
 					</form>
 				</div>
 			</div>
-		</div> -->
-					<?php
-
-					if (isset($_POST['updateInfo'])) 
-					{
-						$loginUpdate = $_POST['updateLogin'];
-                        $passwordUpdate = $_POST['updatePassword'];
-                        $updateConfPassword = $_POST['updateConfPassword'];
-
-
-                        $login = $bdd->execute("SELECT login FROM utilisateurs WHERE login = '$loginUpdate'");
-                        var_dump($login);
-                        $id = $_SESSION['id'];
-
-                        
-                        if (!empty($loginUpdate) && $login == $loginUpdate )             
-                        {                 
-                            echo "Ce Login est déjà prit";             
-                        }
-
-                        else
-                        {
-                        	$updateLogin = $bdd->executeonly("UPDATE utilisateurs SET login = '$loginUpdate' WHERE id= '$id'");
-                        	var_dump($updateLogin);
-                        }
-
-                        if($passwordUpdate == $updateConfPassword)
-                        {
-                        	$mdpHash = password_hash($passwordUpdate, PASSWORD_BCRYPT, array('cost' => 12));
-
-                        	$updatePassword = $bdd->executeonly("UPDATE utilisateurs SET password ='$mdpHash' WHERE id = '$id' ");
-                        	var_dump($updatePassword);
-      
-                        	
-                        }
-                        else
-                        {
-                        	echo "Les mots de passes sont différents !";
-                        }
-					}
-					?>
+		</div> 
+					
 				</div>
 			</div>
 		</div>
