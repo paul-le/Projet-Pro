@@ -59,6 +59,8 @@
 							<input type="submit" class="btn btn-primary" name="updateInfo">
 
 						</div>
+						<div>
+							
 							<?php
 
 							if (isset($_POST['updateInfo'])) 
@@ -84,7 +86,7 @@
 									
 									$updateLogin = $bdd->executeonly("UPDATE utilisateurs SET login = '$loginUpdate' WHERE id= '$id'");
 									
-									  
+									
 								}
 								
 								if(!empty($passwordUpdate))
@@ -105,6 +107,7 @@
 								
 							}
 							?>
+						</div>
 
 					</form>
 				</div>

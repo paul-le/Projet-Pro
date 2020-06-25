@@ -20,7 +20,8 @@
                     if (empty($user)) 
                     {
                         $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
-                        $bdd->executeonly("INSERT INTO utilisateurs (login, password) VALUES ('$login', '$password')");
+
+                        $newUser = $bdd->executeonly("INSERT INTO utilisateurs (login, password) VALUES ('$login', '$password')");
                        
                         return "userCheck";
 
