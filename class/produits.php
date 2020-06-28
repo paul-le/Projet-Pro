@@ -37,7 +37,7 @@
 
 		public function addProduit($nom, $description, $prix, $id_categorie, $img, $viande, $bdd)
 		{
-			if (strlen($nom) != 0 && strlen($description) != 0 && !empty($prix) && !empty($img) && !empty($viande) != 0) 
+			if (strlen($nom) != 0 && strlen($description) != 0 && !empty($prix) && !empty($img) && !empty($viande)) 
 			{
 				$produit = $bdd->execute("SELECT nom FROM plats WHERE nom = '$nom'");
 
