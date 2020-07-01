@@ -58,6 +58,39 @@
 			}
 		}
 
+		public function updateProduits($updateNom, $updateDescription, $updatePrix, $updateImg, $updateViande, $id, $bdd)
+		{
+			if (!empty($updateNom)) 
+			{
+				$update = $bdd->executeonly("UPDATE plats SET nom = '$updateNom' WHERE id ='$id' ");
+				return "nameChange";
+			}
+
+			if (!empty($updateDescription)) 
+			{
+				$update = $bdd->executeonly("UPDATE plats SET description = '$updateDescription' WHERE id ='$id' ");
+				return "descriptionChange";
+			}
+
+			if (!empty($updatePrix)) 
+			{
+				$update = $bdd->executeonly("UPDATE plats SET prix = '$updatePrix' WHERE id ='$id'");
+				return "prixChange";
+			}
+
+			if (!empty($updateImg)) 
+			{
+				$update = $bdd->executeonly("UPDATE plats SET img = '$updateImg' WHERE id ='$id' ");
+				return "imgChange";		
+			}
+
+			if (!empty($updateViande))
+			{
+				$update = $bdd->executeonly("UPDATE plats SET viande = '$updateViande' WHERE id ='$id' ");
+				return "viandeChange";
+			}
+		}
+
 		
 		
 	}
