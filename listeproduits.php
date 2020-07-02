@@ -8,8 +8,8 @@
     $resultatPlats= mysqli_fetch_all($queryPlats);
     $counterPlats= count($resultatPlats);
     
-    var_dump($resultatPlats);
-    var_dump($counterPlats);
+    // var_dump($resultatPlats);
+    // var_dump($counterPlats);
 
 ?>
 
@@ -17,40 +17,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style/bootstrap-4.5.0-dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- Balise indispensable pour le responsive -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link href="css/fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/stylesPaul.css">
     <title>Liste des produits</title>
 </head>
 <body>
+<?php require("templates/header.phtml"); ?>
     <main class="container">
-        <div class="dropdown">
+        <div class="dropdown"><br><br>
             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Viande
-            </button>
+            </button><br><br>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                <div class="form-check" id="radioCheckLesDeux">
+                    <input class="form-check-input" type="radio" name="radioViande" id="exampleRadios1" value="option1" checked>
                     <label class="form-check-label" for="exampleRadios1">
                         Les deux
                     </label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <div class="form-check" id="radioCheckAvec">
+                    <input class="form-check-input" type="radio" name="radioViande" id="exampleRadios2" value="option2">
                     <label class="form-check-label" for="exampleRadios2">
                         Avec
                     </label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
+                <div class="form-check" id="radioCheckSans">
+                    <input class="form-check-input" type="radio" name="radioViande" id="exampleRadios3" value="option3">
+                    <label class="form-check-label" for="exampleRadios3">
                         Sans
                     </label>
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-row justify-content-around">
+        <div class="d-flex flex-row" id="generationPlats">
             <?php
                 $i = 0;
                 while($i < $counterPlats)
@@ -59,12 +65,14 @@
                     // $i++;
                 ?>
                 <!-- <div class="d-flex flex-row"> -->
-                    <div class="card" style="width: 18rem;">
-                        <img src="<?php echo "".$resultatPlats[$i][5].""; ?>" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo "".$resultatPlats[$i][1].""; ?></h5>
-                                <p class="card-text"><?php echo "".$resultatPlats[$i][2].""; ?></p>
-                                <a href="#" class="btn btn-success"><?php echo "".$resultatPlats[$i][4]." €"; ?></a>
+                    <div class="card-group col-3">
+                        <div class="card" id="platsCards" style="width: 18rem;">
+                            <img src="<?php echo "".$resultatPlats[$i][5].""; ?>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo "".$resultatPlats[$i][1].""; ?></h5>
+                                    <p class="card-text"><?php echo "".$resultatPlats[$i][2].""; ?></p>
+                                    <a id="flexPrisEnBas" href="#" class="btn btn-success"><?php echo "".$resultatPlats[$i][4]." €"; ?></a>
+                            </div>
                         </div>
                     </div>
                 <!-- </div> -->
@@ -74,5 +82,8 @@
             ?>
             </div>
     </main>
+    <?php require("templates/footer.phtml"); ?>
+    <script src="style/toast.js" type="text/javascript"></script>
+    <script src="style/jQuery.js" type="text/javascript"></script>
 </body>
 </html>

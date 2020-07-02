@@ -1,0 +1,16 @@
+#platsCards{
+    width: 22%;
+}
+
+.card-group{
+    margin-bottom: 3%;
+}
+
+.dropdown{
+    margin-left: 1.39%;
+}
+
+#generationPlats{
+    flex-wrap: wrap;
+    width: 100%;
+}

@@ -1,0 +1,56 @@
+<script type="text/javascript" src="js/main.js"></script>
+<header>
+    <nav id="acc-navtop" class="navbar p-3">
+        <div class="container">
+            <img src="https://believemy.com/uploads/2f3811b9174e35a2d77902ffd36a9a37_4dfb82dd429edb6a11a81ff74e9abfc4.png" class="mx-auto" style="height: 30px"/>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-md">
+        <button class="navbar-toggler second-button border-0" id="nav-button" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
+        </button>
+        
+        <div id="navbarText" class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-4">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-4">Plats</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-4">Offres</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <?php if(!isset($_SESSION['user'])): ?> 
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-4">Connexion</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" id="nav-link-warning" class="nav-link px-4 bg-warning">Inscription</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" id="nav-link-panier" class="nav-link px-4"><i class="fas fa-shopping-cart"></i></a>
+                </li>
+                <?php else: ?>
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-4">Déconnexion</a>
+                </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </nav>
+    <div class="jumbotron text-white rounded-0">
+        <div class="container p-3 w-100" id="box-cont-jumbo">
+            <h2 id="title-jumbo">Des repas frais,<br/>livrés chaques jours de: <br/>- 9h à 11h<br/>- 19h à 22h</h2>
+            <ul class="list-group">
+                <li class="list-group-item pl-0"><i class="fas fa-check pr-2"></i> Fait maison</li>
+                <li class="list-group-item pl-0"><i class="fas fa-check pr-2"></i> Livraison partout dans Marseille</li>
+                <li class="list-group-item pl-0"><i class="fas fa-check pr-2"></i> Sans engagement</li>
+            </ul>
+            <button type="button" class="btn btn-warning">S'inscrire</button>
+        </div>
+    </div>
+</header>
