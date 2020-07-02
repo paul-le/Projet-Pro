@@ -66,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-row" id="generationPlats">
+        <div class="d-flex flex-row col-12" id="generationPlats">
             <?php
                 $i = 0;
                 while($i < $counterPlats)
@@ -75,7 +75,7 @@
                     // $i++;
                 ?>
                 <!-- <div class="d-flex flex-row"> -->
-                    <div class="card-group col-3">
+                    <div class="card-group col-lg-3 col-xs-6 col-md-4">
                         <div class="card" id="platsCards" style="width: 18rem;">
                             <img src="<?php echo "".$resultatPlats[$i][5].""; ?>" class="card-img-top" alt="...">
                             <div class="card-body">
