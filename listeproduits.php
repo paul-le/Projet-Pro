@@ -30,7 +30,17 @@
 </head>
 <body>
 <?php require("templates/header.phtml"); ?>
+        <div class="">
+            <img id="toastimg" src="img/toplisteplatbanner.jpg">
+        </div>
     <main class="container">
+        <div class="">
+            <img id="toastimg" src="img/toplisteplatbanner.jpg">
+        </div>
+        <div id="aboveListePlats">
+            <h5>Les plats</h5>
+            <p>Fraîchement cuisinés !</p>
+        </div>
         <div class="dropdown"><br><br>
             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Viande
