@@ -268,7 +268,7 @@
 								$updateProduit = $bdd->execute("SELECT * FROM plats INNER JOIN categorie ON plats.id_categorie = categorie.id WHERE plats.id = '$idProduits'");
 
 
-								var_dump($updateProduit);
+								
 								
 								if (isset($_POST["deleteProduit$idProduits"])) 
 								{
@@ -289,13 +289,18 @@
 									<input type="number" step="0.01" name="updatePrixProduit" placeholder="<?php echo $updateProduit[0][4];  ?>">
 									
 									<input type="file" name="updateImgProduit">
-									<input type="text" name="updateViandeProduit" placeholder="<?php echo $updateProduit[0][6];  ?>">
-									<input type="submit" name="modifier2Produit<?php echo $plats[0][0]; ?>" value="Modifier" >									
-								
+									Viande :  OUI <input type="radio" name="updateViandeProduit" value="oui">
+											  NON <input type="radio" name="updateViandeProduit" value="non">
+					  				
+									<input type="submit" name="modifier2Produit<?php echo $updateProduit[0][0]; ?>" value="Modifier" >						
+
+
+									
 								<?php
 								}
 
-								if (isset($_POST["modifier2Produit$idProduits"])) 
+								$id = $updateProduit[0][0] ;
+								if (isset($_POST["modifier2Produit$id"])) 
 								{
 									
 									$updateNom = $_POST['updateNameProduit'];
@@ -303,9 +308,9 @@
 									$updatePrix = $_POST['updatePrixProduit'];
 									$updateViande = $_POST['updateViandeProduit'] ;
 									
-									echo $updateProduit[0][0];
+									
 
-									if (isset($_FILES['updateImgProduit']) AND !empty($_FILES['updateImgProduit'])) 
+									if (!empty($_FILES['updateImgProduit']))
 									{
 
 										$tailleMax = 2097152 ;
@@ -333,7 +338,7 @@
 
 												if ($deplacement) 
 												{
-													if (!empty($updateNom)) 
+													if (!empty($updateNom))
 													{
 														$updateImg = $_POST['updateNameProduit'].".".$extensionsUpload;
 													}
@@ -361,39 +366,44 @@
 									}
 									else
 									{
-										$updateImg = $updateProduit[0][5];
+										
+										$updateImg = $updateProduit[0][5];	
+										
 									}
 
+									
 									
 
 									
 									
 									
 										
-									if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $updateImg, $updateViande, $id, $bdd) == "nameChange") 
-									{
-										echo "Le nom a changer";
-									}
+										if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $updateImg, $updateViande, $id, $bdd) == "nameChange") 
+										{
+											echo "Le nom a changer";
+										}
 
-									if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $updateImg, $updateViande, $id, $bdd) == "descriptionChange") 
-									{
-										echo "La description a changer";
-									}
+										if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $updateImg, $updateViande, $id, $bdd) == "descriptionChange") 
+										{
+											echo "La description a changer";
+										}
 
-									if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $updateImg, $updateViande, $id, $bdd) == "prixChange") 
-									{
-										echo "Le prix a changer";
-									}
+										if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $updateImg, $updateViande, $id, $bdd) == "prixChange") 
+										{
+											echo "Le prix a changer";
+										}
 
-									if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $updateImg, $updateViande, $id, $bdd) == "imgChange") 
-									{
-										echo "La photo a changer";
-									}
+										if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $updateImg, $updateViande, $id, $bdd) == "imgChange") 
+										{
+											echo "La photo a changer";
+										}
 
-									if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $updateImg, $updateViande, $id, $bdd) == "viandeChange") 
-									{
-										echo "La viande a changer";
-									}
+										if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $updateImg, $updateViande, $id, $bdd) == "viandeChange") 
+										{
+											echo "La viande a changer";
+										}
+									
+										
 									
 
 									
