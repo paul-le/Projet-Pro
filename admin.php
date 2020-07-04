@@ -306,7 +306,7 @@
 									$updateNom = $_POST['updateNameProduit'];
 									$updateDescription = $_POST['updateDescriptionProduit'];
 									$updatePrix = $_POST['updatePrixProduit'];
-									$updateViande = $_POST['updateViandeProduit'] ;
+									$updateViande = $_POST['updateViandeProduit'];
 									
 									
 
@@ -367,7 +367,8 @@
 									else
 									{
 										
-										$updateImg = $updateProduit[0][5];	
+										$updateImg = $updateProduit[0][5];
+										var_dump($updateImg);
 										
 									}
 
