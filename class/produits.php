@@ -58,7 +58,7 @@
 			}
 		}
 
-		public function updateProduits($updateNom, $updateDescription, $updatePrix, $updateImg, $updateViande, $id, $bdd)
+		public function updateProduits($updateNom, $updateDescription, $updatePrix, $updateCategorie, $updateImg, $updateViande, $id, $bdd)
 		{
 			if (!empty($updateNom)) 
 			{
@@ -76,6 +76,12 @@
 			{
 				$update = $bdd->executeonly("UPDATE plats SET prix = '$updatePrix' WHERE id ='$id'");
 				return "prixChange";
+			}
+
+			if (!empty($updateCategorie)) 
+			{
+				$update = $bdd->executeonly("UPDATE plats SET id_categorie = '$updateCategorie' WHERE id ='$id'");
+				return "categorieChange";
 			}
 
 			if (!empty($updateImg)) 
