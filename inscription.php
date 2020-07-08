@@ -19,39 +19,45 @@
 <html>
 <head>
 	<title>Inscritpion</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
-	<main>
-		<form method="post" action="">
-			Login : <input type="text" name="login" required>
-			Mot de passe : <input type="password" name="password" required>
-			Confirmer votre Mot de Passe : <input type="password" name="confPassword" required>
-			
-			<input type="submit" value="Inscritpion" name="newUser">
-		</form>
-		<?php
-	
-		if (isset($_POST["newUser"])) 
-		{
-			if ($user->inscription($_POST['login'], $_POST["password"], $_POST['confPassword'], $bdd) == "userCheck") 
+<body id="bodyInscription">
+	<main id="mainInscription">
+		<section id="inscription">
+			<h1 id="titleInscription">INSCRIPTION <span>Bienvenue</span> </h1>
+			<form method="post" action="" id="formInscription">
+				<label for="login" class="labelInscription">Login :</label><input type="text" name="login" class="inputInscription" required><br />
+				<label for="mdp" class="labelInscription">Mot de passe :</label>  <input type="password" name="password" class="inputInscription" required><br />
+				<label for="confMdp" class="labelInscription">Confirmer votre Mot de Passe :</label> <input type="password" name="confPassword" class="inputInscription" required><br />
+
+				<label for="adresse" class="labelInscription">Adresse :</label> <input type="text" name="adresse" class="inputInscription"><br />
+
+				<input type="submit" value="Inscritpion" name="newUser">
+			</form>
+			<?php
+
+			if (isset($_POST["newUser"])) 
 			{
-				echo "Compte créer";
-				header('Location:connexion.php');
+				if ($user->inscription($_POST['login'], $_POST["password"], $_POST['confPassword'], $_POST['adresse'], $bdd) == "userCheck") 
+				{
+					echo "Compte créer";
+					header('Location:connexion.php');
+				}
+				elseif ($user->inscription($_POST['login'], $_POST["password"], $_POST['confPassword'], $_POST['adresse'], $bdd) == "userExist") 
+				{
+					echo "ce login existe";
+				}
+				elseif ($user->inscription($_POST['login'], $_POST["password"], $_POST['confPassword'], $_POST['adresse'], $bdd) == "mdpFaux") 
+				{
+					echo "mot de passe !=";
+				}
+				elseif ($user->inscription($_POST['login'], $_POST["password"], $_POST['confPassword'], $_POST['adresse'], $bdd) == "logVide") 
+				{
+					echo "champ manquant";
+				}
 			}
-			elseif ($user->inscription($_POST['login'], $_POST["password"], $_POST['confPassword'], $bdd) == "userExist") 
-			{
-				echo "ce login existe";
-			}
-			elseif ($user->inscription($_POST['login'], $_POST["password"], $_POST['confPassword'], $bdd) == "mdpFaux") 
-			{
-				echo "mot de passe !=";
-			}
-			elseif ($user->inscription($_POST['login'], $_POST["password"], $_POST['confPassword'], $bdd) == "logVide") 
-			{
-				echo "champ manquant";
-			}
-		}
-?>
+			?>
+		</section>
 	</main>
 
 </body>

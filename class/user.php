@@ -7,7 +7,7 @@
         private $login = NULL;
         private $password = NULL;
 
-        public function inscription($login, $password, $confPassword, $bdd)
+        public function inscription($login, $password, $confPassword, $adresse, $bdd)
         {
             if (strlen($login) != 0 && strlen($password) != 0) 
             {
@@ -21,7 +21,7 @@
                     {
                         $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 
-                        $newUser = $bdd->executeonly("INSERT INTO utilisateurs (login, password) VALUES ('$login', '$password')");
+                        $newUser = $bdd->executeonly("INSERT INTO utilisateurs (login, password, adresse) VALUES ('$login', '$password', '$adresse')");
                        
                         return "userCheck";
 

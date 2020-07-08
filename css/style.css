@@ -1,0 +1,269 @@
+#bodyAdmin{
+	background-color: black ;
+}
+
+#mainAdmin{
+	width: 70%;
+	margin: 0 auto ;
+	background-color: white;
+}
+
+
+
+#categorieAndPlat{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+
+}
+
+#titreAddCategorie{
+	background-color: black;
+	color: white ;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+#addCategorie{
+	width: 50%;
+	margin : 0 auto;
+	text-align: center;
+	border-style: solid;
+	border-color: red;
+	padding: 5px;
+	height: 450px;
+	overflow: scroll;
+}
+
+#titreListeCategorie{
+	background-color: black;
+	color: white ;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+#addPlat{
+	width: 50%;
+	margin : 0 auto;
+	text-align: center;
+	border-style: solid;
+	border-color: red;
+	padding: 5px;
+}
+
+#listePlat{
+	background-color: black;
+	color: white;
+	text-align: center;
+	width: 50%;
+	margin : 0 auto;
+}
+
+@media screen and (max-width: 768px) { 
+  #mainAdmin { 
+    width: 100%;
+    
+  }
+
+  #categorieAndPlat{
+  	display: flex;
+  	flex-direction: column;
+  }
+
+  #addCategorie{
+  	width: 80%;
+  }
+
+  #addPlat{
+  	width: 80%;
+  }
+
+
+	#no-more-tables table, 
+	#no-more-tables thead, 
+	#no-more-tables tbody, 
+	#no-more-tables th, 
+	#no-more-tables td, 
+	#no-more-tables tr { 
+		display: block; 
+	}
+ 
+	
+	#no-more-tables thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+ 
+	#no-more-tables tr { border: 1px solid #ccc; }
+ 
+	#no-more-tables td { 
+		
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+		white-space: normal;
+		text-align:left;
+	}
+ 
+	#no-more-tables td:before { 
+	
+		position: absolute;
+		
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		text-align:left;
+		font-weight: bold;
+	}
+ 
+	
+	#no-more-tables td:before { content: attr(data-title); }
+
+}
+
+
+/*----------------------INSCRIPTION---------------------*/
+/*----------------------INSCRIPTION---------------------*/
+/*----------------------INSCRIPTION---------------------*/
+/*----------------------INSCRIPTION---------------------*/
+/*----------------------INSCRIPTION---------------------*/
+/*----------------------INSCRIPTION---------------------*/
+
+#bodyInscription{
+	margin: 0;
+}
+
+#mainInscription{
+	width: 100%;
+	background-color: white ;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#titleInscription {
+	font-size: 30px;
+	color: #969696;
+	text-shadow: 1px 1px 0px #fff;
+	font-weight: 100;
+}
+
+#titleInscription span {
+	display:block;
+	font-size: 14px;
+	color: #bbb;
+}
+
+#inscription{
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#formInscription{
+	text-align: center;
+}
+
+
+#formInscription p { 
+	position: relative; 
+}
+
+
+.labelInscription{
+	display: block;
+
+	
+}
+
+.inputInscription {
+	width: 250px;
+
+	padding: 10px 12px;
+	margin-bottom: 5px;
+	border: 1px solid #cccccc;
+	border-bottom-color: #fff;
+	border-right-color: #fff;
+	border-radius: 4px;
+	background: #e3e3e3;
+	color: #888;
+
+}
+
+
+/*----------------------CONNEXION---------------------*/
+/*----------------------CONNEXION---------------------*/
+/*----------------------CONNEXION---------------------*/
+/*----------------------CONNEXION---------------------*/
+/*----------------------CONNEXION---------------------*/
+/*----------------------CONNEXION---------------------*/
+
+#bodyConnexion{
+	margin :0;
+}
+
+#mainConnexion{
+	width: 100%;
+	background-color: white ;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#connexion {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+
+}
+
+#titleConnexion {
+	font-size: 30px;
+	color: #969696;
+	text-shadow: 1px 1px 0px #fff;
+	font-weight: 100;
+}
+
+#titleConnexion span {
+	display:block;
+	font-size: 14px;
+	color: #bbb;
+}
+
+#formConnexion p { 
+	position: relative; 
+}
+
+.labelConnexion{
+	display: block;
+}
+
+.inputConnexion {
+	width: 250px;
+
+	padding: 10px 12px;
+	margin-bottom: 5px;
+	border: 1px solid #cccccc;
+	border-bottom-color: #fff;
+	border-right-color: #fff;
+	border-radius: 4px;
+	background: #e3e3e3;
+	color: #888;
+
+}
+
+.show-password {
+	font-size: 9px;
+	text-transform: uppercase;
+	position: absolute;
+	cursor: pointer;
+	margin-left: -48px;
+}
+
