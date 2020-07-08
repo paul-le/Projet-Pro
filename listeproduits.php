@@ -81,7 +81,23 @@
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo "".$resultatPlats[$i][1].""; ?></h5>
                                     <p class="card-text"><?php echo "".$resultatPlats[$i][2].""; ?></p>
-                                    <a id="flexPrisEnBas" href="#" class="btn btn-success"><?php echo "".$resultatPlats[$i][4]." €"; ?></a>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal<?php echo "".$i.""; ?>">
+                                        <?php echo "".$resultatPlats[$i][4]." €"; ?>
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal left fade" id="exampleModal<?php echo "".$i.""; ?>" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="nav flex-sm-column flex-row">
+                                    <img src="<?php echo "".$resultatPlats[$i][5].""; ?>" class="card-img-top" alt="...">
+                                    </div>
+                                </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
                             </div>
                         </div>
                     </div>

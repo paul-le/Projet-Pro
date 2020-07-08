@@ -1,0 +1,1 @@
+<a id="flexPrisEnBas" href="#" class="btn btn-success"><?php echo "".$resultatPlats[$i][4]." €"; ?></a>
