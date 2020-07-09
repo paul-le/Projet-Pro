@@ -92,11 +92,21 @@
                             <div class="modal-content">
                                 <div class="modal-body">
                                     <div class="nav flex-sm-column flex-row">
+                                    <h1 class="card-title">
                                     <img src="<?php echo "".$resultatPlats[$i][5].""; ?>" class="card-img-top" alt="...">
+                                    <h3 id="titrePlats1"><?php echo "".$resultatPlats[$i][1].""; ?></h3>
+                                    <div id="above-modal-desc">
+                                        <p id="valeur-nutri-p">Valeur nutritionnelle</p>
+                                        <button type="button" id="toasty" class="btn btn-success">Ajouter au panier</button>
+                                    </div>
+                                    <div id="modal-description-zone">
+                                    <p id="modal-description"><?php echo "".$resultatPlats[$i][2].""; ?></p>
+                                    </div>
                                     </div>
                                 </div>
+
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                                 </div>
                             </div>
                         </div>
