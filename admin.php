@@ -17,7 +17,7 @@ $nbCat = count($categorie);
 $plats = $bdd->execute("SELECT * FROM plats INNER JOIN categorie ON plats.id_categorie = categorie.id");
 $nbPlats = count($plats);
 
-
+ob_start(); 
 
 
 
@@ -491,9 +491,9 @@ $nbPlats = count($plats);
 								</table>
 
 							</form>
-				</section>
+						</section>
 
-				
+
 
 
 
@@ -507,7 +507,10 @@ $nbPlats = count($plats);
 						?>
 
 
-					</main>
+	</main>
+</body>
+</html>
 
-				</body>
-				</html>
+<?php
+ob_end_flush(); 
+?>
