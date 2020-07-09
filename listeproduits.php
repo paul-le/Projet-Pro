@@ -77,13 +77,17 @@
                 <!-- <div class="d-flex flex-row"> -->
                     <div class="card-group col-lg-3 col-xs-6 col-md-4">
                         <div class="card" id="platsCards" style="width: 18rem;">
-                            <img src="<?php echo "".$resultatPlats[$i][5].""; ?>" class="card-img-top" alt="...">
+                            <img src="<?php echo "photoProduit/".$resultatPlats[$i][5].""; ?>" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo "".$resultatPlats[$i][1].""; ?></h5>
-                                    <p class="card-text"><?php echo "".$resultatPlats[$i][2].""; ?></p>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal<?php echo "".$i.""; ?>">
+                                    <!-- <p class="card-text"><?php/* echo "".$resultatPlats[$i][2].""; */?></p> -->
+                                    <div id="card-bottom-desc">
+                                        <p id="cal-bottom-card">Calories</p>
                                         <?php echo "".$resultatPlats[$i][4]." €"; ?>
-                                    </button>
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal<?php echo "".$i.""; ?>">
+                                            Infos
+                                        </button>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -93,10 +97,11 @@
                                 <div class="modal-body">
                                     <div class="nav flex-sm-column flex-row">
                                     <h1 class="card-title">
-                                    <img src="<?php echo "".$resultatPlats[$i][5].""; ?>" class="card-img-top" alt="...">
+                                    <img src="<?php echo "photoProduit/".$resultatPlats[$i][5].""; ?>" class="card-img-top" alt="...">
                                     <h3 id="titrePlats1"><?php echo "".$resultatPlats[$i][1].""; ?></h3>
                                     <div id="above-modal-desc">
                                         <p id="valeur-nutri-p">Valeur nutritionnelle</p>
+                                        <?php echo "<p id='prix-dans-modal'>".$resultatPlats[$i][4]." € </p>"; ?>
                                         <button type="button" id="toasty" class="btn btn-success">Ajouter au panier</button>
                                     </div>
                                     <div id="modal-description-zone">

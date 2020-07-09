@@ -76,7 +76,7 @@
 
 #titrePlats1{
 	text-align: center;
-	margin-top: 45%;
+	margin-top: 5%;
 	margin-bottom: 5%;
 }
 
@@ -101,8 +101,7 @@
 	align-items: center;
 	justify-content: center;
 	padding: 0;
-	margin-top:3%;
-	margin-bottom: 3%;
+	margin: 5%;
 }
 
 #valeur-nutri-p{
@@ -117,4 +116,25 @@
 
 #toasty{
 	border-radius: 0;
+}
+
+#prix-dans-modal{
+	margin-top: 1.5%;
+}
+
+#card-bottom-desc{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	/* margin-bottom: 5%; */
+	align-items: center;
+	align-content: flex-end;
+}
+
+#cal-bottom-card{
+	margin: 0;
+}
+
+#prix-flex{
+	margin-bottom: 0;
 }
