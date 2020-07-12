@@ -14,7 +14,7 @@
 	{
 
 		$showPanier = $bdd->execute("SELECT * FROM panier INNER JOIN plats ON panier.id_produit = plats.id INNER JOIN utilisateurs ON panier.id_utilisateur = utilisateurs.id WHERE id_utilisateur = '".$_SESSION['id']."'") ;
-		var_dump($showPanier);
+		
 		
 	}
 
@@ -27,6 +27,8 @@
 <head>
 	<title>PANIER</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 </head>
 <body>
 	<main>
@@ -78,16 +80,24 @@
 										<tr id="generationItemPanier">
 											<td><?php echo $showPanier[$i][6]; ?></td>
 											<td><img src="photoProduit/<?php echo $showPanier[$i][10] ?>" width ="100" ></td>
-											<td><?php echo $showPanier[$i][3]; ?></td>
 											<td>
-												<select name="addQuantite<?php echo $showPanier[$i][0]; ?>">
+												
+												<button style="font-size:15px" id="minus" onclick="minusProduit()"><i class="fa fa-caret-square-o-left"></i></button>
+												<?php echo $showPanier[$i][3]; ?>
+												<button style="font-size:15px" id="plus" onclick="plusProduit()"><i class="fa fa-caret-square-o-right"></i></button>
+												
+											</td>
+											<td>
+												<!-- <select name="addQuantite<?php echo $showPanier[$i][0]; ?>">
 													<option value="1">1</option>
 													<option value="2">2</option>
 													<option value="3">3</option>
 													<option value="4">4</option>
 													<option value="5">5</option>
 												</select>
-												<input type="submit" name="newAdd<?php echo $showPanier[$i][0]; ?>" value="Add">
+												<input type="submit" name="newAdd<?php echo $showPanier[$i][0]; ?>" value="Add"> -->
+												
+
 											</td>
 											<td><?php echo $showPanier[$i][4]; ?></td>
 
@@ -153,7 +163,9 @@
 				</table>
 			</form>
 		</section>
+		<script type="text/javascript" src="js/panier.js"></script>
 	</main>
+
 
 </body>
 </html>
