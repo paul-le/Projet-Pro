@@ -14,6 +14,8 @@
 	{
 
 		$showPanier = $bdd->execute("SELECT * FROM panier INNER JOIN plats ON panier.id_produit = plats.id INNER JOIN utilisateurs ON panier.id_utilisateur = utilisateurs.id WHERE id_utilisateur = '".$_SESSION['id']."'") ;
+
+
 		
 		
 	}
@@ -31,30 +33,26 @@
 	
 </head>
 <body>
+	
 	<main>
 		<section>
 			<form method="post" action="">
-				<table>
-					<thead>
-						<tr>
-							<?php
-							if (isset($_SESSION['login']))
-							{?>
-								<td colspan="6">Panier de : <?php echo $_SESSION['login'] ?></td>
-								
-							<?php
-							}
-							?>
-						</tr>
-					</thead>
+				<?php
+				if (isset($_SESSION['login']))
+					{?>
+						<div id="nameUser">Panier de : <?php echo $_SESSION['login'] ?></div>
 
+						<?php
+					}
+					?>
+				<table id="tablePanier">
+					
 					<tbody>
 						<tr>
-							<td>Nom</td>
-							<td>Photo</td>
-							<td>Quantite</td>
-							<td></td>
-							<td>Prix</td>
+							<td class="nameColumnProduit">Nom</td>
+							<td class="nameColumnProduit">Photo</td>
+							<td class="nameColumnProduit">Quantite</td>
+							<td class="nameColumnProduit">Prix</td>
 							<td></td>
 						</tr>
 
@@ -63,43 +61,29 @@
 							{
 						
 								$nbProduit = count($showPanier);
-								if ($nbProduit == 0) 
+								if ($nbProduit != 0) 
 								{
-									echo "Votre Panier est vide";
-								}
-								else
-								{
+									
 									$i = 0 ;
 									$prixTotal = 0;
 									while ($i != $nbProduit) 
 									{
 
 										$idProduit = $showPanier[$i][0];
-										$idArticle = $showPanier[$i][1];
+										
 										?>
-										<tr id="generationItemPanier">
-											<td><?php echo $showPanier[$i][6]; ?></td>
-											<td><img src="photoProduit/<?php echo $showPanier[$i][10] ?>" width ="100" ></td>
-											<td>
+										<tr>
+											<td class="nameColumnProduit"><?php echo $showPanier[$i][6]; ?></td>
+											<td class="nameColumnProduit"><img src="photoProduit/<?php echo $showPanier[$i][10] ?>" width ="100" ></td>
+											<td class="nameColumnProduit">
 												
-												<button style="font-size:15px" id="minus" onclick="minusProduit()"><i class="fa fa-caret-square-o-left"></i></button>
+												<button style="font-size:15px" id="minus" name="minus<?php echo $showPanier[$i][0]; ?>" onclick="minusProduit()"><i class="fa fa-caret-square-o-left"></i></button>
 												<?php echo $showPanier[$i][3]; ?>
-												<button style="font-size:15px" id="plus" onclick="plusProduit()"><i class="fa fa-caret-square-o-right"></i></button>
+												<button style="font-size:15px" id="plus" name="plus<?php echo $showPanier[$i][0]; ?>" onclick="plusProduit()"><i class="fa fa-caret-square-o-right"></i></button>
 												
 											</td>
-											<td>
-												<!-- <select name="addQuantite<?php echo $showPanier[$i][0]; ?>">
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
-													<option value="5">5</option>
-												</select>
-												<input type="submit" name="newAdd<?php echo $showPanier[$i][0]; ?>" value="Add"> -->
-												
-
-											</td>
-											<td><?php echo $showPanier[$i][4]; ?></td>
+											
+											<td class="nameColumnProduit"><?php echo $showPanier[$i][4]; ?></td>
 
 											<td>
 												<input type="submit" name="deleteProduit<?php echo $showPanier[$i][0]; ?>" value="Supprimer">
@@ -135,7 +119,36 @@
 										}
 
 
+										if (isset($_POST["minus$idProduit"])) 
+										{
+											
+											if ($showPanier[$i][3] == 1) 
+											{
+												$requeteDelete = $bdd->executeonly("DELETE FROM panier WHERE id = '$idProduit'");
+												header('Location:panier.php');
+											}
+											else
+											{
+												$quantite = $showPanier[$i][3] - 1 ; 
+												$req = $bdd->executeonly("UPDATE panier SET quantite = '$quantite' WHERE id= '$idProduit'");
 
+												$prix = $quantite * $showPanier[$i][9];
+												$req = $bdd->executeonly("UPDATE panier SET prix = '$prix' WHERE id= '$idProduit'");
+
+												header('Location:panier.php');
+											}	
+										}
+
+										if (isset($_POST["plus$idProduit"])) 
+										{
+											$quantite = $showPanier[$i][3] + 1 ;
+											$req = $bdd->executeonly("UPDATE panier SET quantite = '$quantite' WHERE id= '$idProduit'");
+
+											$prix = $quantite * $showPanier[$i][9];
+											$req = $bdd->executeonly("UPDATE panier SET prix = '$prix' WHERE id= '$idProduit'");
+
+											header('Location:panier.php');
+										}
 										
 										$prixTotal += $showPanier[$i][4];
 
@@ -156,6 +169,10 @@
 
 									<?php
 								}
+								else
+								{
+									echo "Votre Panier est vide";
+								}
 
 							}
 							?>
@@ -163,7 +180,7 @@
 				</table>
 			</form>
 		</section>
-		<script type="text/javascript" src="js/panier.js"></script>
+	
 	</main>
 
 
