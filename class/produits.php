@@ -93,6 +93,7 @@
 			if (!empty($updateViande))
 			{
 				$update = $bdd->executeonly("UPDATE plats SET viande = '$updateViande' WHERE id ='$id' ");
+				echo $update;
 				return "viandeChange";
 			}
 		}

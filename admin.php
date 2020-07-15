@@ -358,7 +358,7 @@ ob_start();
 
 
 												$id_categorieUpdate = $bdd->execute("SELECT * FROM categorie WHERE nom = '".$_POST['updateCategorie']."' ");
-												var_dump($id_categorieUpdate);
+												
 
 												if (empty($id_categorieUpdate)) 
 												{
@@ -375,7 +375,7 @@ ob_start();
 													$updateViande = $updateProduit[0][6];
 												}
 
-
+												
 
 
 												if ($_FILES['updateImgProduit']['size'] == 0 && $_FILES['updateImgProduit']['error'] == 0)
@@ -440,8 +440,6 @@ ob_start();
 
 
 
-
-
 												$nameProduit = $bdd->execute("SELECT nom FROM plats WHERE nom = '$updateNom'");
 
 
@@ -479,6 +477,7 @@ ob_start();
 													echo "La viande a changer";
 												}
 
+												
 											}
 
 											?>
