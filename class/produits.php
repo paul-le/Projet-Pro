@@ -33,17 +33,39 @@
 			}
 		}
 
-
-
-		public function addProduit($nom, $description, $prix, $id_categorie, $img, $viande, $bdd)
+		public function addIngredient($nom, $bdd)
 		{
-			if (strlen($nom) != 0 && strlen($description) != 0 && !empty($prix) && !empty($img) && !empty($viande)) 
+			if (strlen($nom) != 0) 
+			{
+				$ingredient = $bdd->execute("SELECT nom FROM ingredients WHERE nom = '$nom'");
+
+				if (empty($ingredient)) 
+				{
+					$newIngredient = $bdd->executeonly("INSERT INTO ingredients (nom) VALUES ('$nom')");
+					return "newIngredient";
+				}
+				else
+				{
+					return "ingredientExistant";
+				}
+			}
+			else
+			{
+				return "info";
+			}
+		}
+
+
+
+		public function addProduit($nom, $description, $prix, $id_categorie, $img1, $img2, $bdd)
+		{
+			if (strlen($nom) != 0 && strlen($description) != 0 && !empty($prix) && !empty($img1) && !empty($img2)) 
 			{
 				$produit = $bdd->execute("SELECT nom FROM plats WHERE nom = '$nom'");
 
 				if (empty($produit)) 
 				{
-					$newProduit = $bdd->executeonly("INSERT INTO plats (nom, description, prix, id_categorie, img, viande) VALUES ('$nom', '$description', '$prix', '$id_categorie', '$img', '$viande' )");
+					$newProduit = $bdd->executeonly("INSERT INTO plats (nom, description, prix, id_categorie, img1, img2) VALUES ('$nom', '$description', '$prix', '$id_categorie', '$img1', '$img2' )");
 
 					return "newProduit";
 				}
@@ -58,7 +80,7 @@
 			}
 		}
 
-		public function updateProduits($updateNom, $updateDescription, $updatePrix, $updateCategorie, $updateImg, $updateViande, $id, $bdd)
+		public function updateProduits($updateNom, $updateDescription, $updatePrix, $updateCategorie, $updateImg1, $updateImg2, $id, $bdd)
 		{
 			if (!empty($updateNom)) 
 			{
@@ -84,17 +106,17 @@
 				return "categorieChange";
 			}
 
-			if (!empty($updateImg)) 
+			if (!empty($updateImg1)) 
 			{
-				$update = $bdd->executeonly("UPDATE plats SET img = '$updateImg' WHERE id ='$id' ");
-				return "imgChange";		
+				$update = $bdd->executeonly("UPDATE plats SET img = '$updateImg1' WHERE id ='$id' ");
+				return "img1Change";		
 			}
 
-			if (!empty($updateViande))
+			if (!empty($updateImg2))
 			{
-				$update = $bdd->executeonly("UPDATE plats SET viande = '$updateViande' WHERE id ='$id' ");
+				$update = $bdd->executeonly("UPDATE plats SET viande = '$updateImg2' WHERE id ='$id' ");
 				echo $update;
-				return "viandeChange";
+				return "img2Change";
 			}
 		}
 

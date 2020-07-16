@@ -5,9 +5,7 @@
 /*----------------------INDEX---------------------*/
 /*----------------------INDEX---------------------*/
 
-#imgPanier:hover{
-	cursor: pointer;
-}
+
 
 
 
@@ -30,7 +28,12 @@
 	background-color: white;
 }
 
-
+#listeCatIng{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+}
 
 #categorieAndPlat{
 	width: 100%;
