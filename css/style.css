@@ -299,23 +299,18 @@
 /*----------------------PROFIL---------------------*/
 /*----------------------PROFIL---------------------*/
 
-.radio-group{
-    position: relative;
+.choice input {
+    display: none;
 }
 
-.radio{
-    display:inline-block;
-    width:15px;
-    height: 15px;
-    border-radius: 100%;
-    background-color:lightblue;
-    border: 2px solid lightblue;
-    cursor:pointer;
-    margin: 2px 0; 
+.choice {
+    border: 1px solid gray;
+    padding: 30px;
+    margin: 20px;
 }
 
-.radio.selected{
-    border-color: blue;
+.active {
+    background-color: yellow;
 }
 /*----------------------PANIER---------------------*/
 /*----------------------PANIER---------------------*/

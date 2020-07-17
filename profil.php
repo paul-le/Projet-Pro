@@ -22,6 +22,7 @@ var_dump($user);
 	<title>Profil</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="js/userInfo.js"></script>
 
 
 </head>
@@ -97,50 +98,59 @@ var_dump($user);
 
 		<h2>VOS GOUT :</h2>
 		Proteines :<br />
+		<div class="choice" style="background-image: url(img/proteine/boeuf.jpg); background-size: cover; width: 50%;">
+			<input id="choice_1" type="checkbox" name="choice_1" value="choice_1" />
+			<label for="choice_1">Boeuf</label>
+		</div>
 		<form method="post" action="">
-			<button type="submit" style="background-image: url(img/proteine/boeuf.jpg); background-size: cover;">Boeuf</button>
+			<
 
-			<button style="background-image: url(img/proteine/poulet.jpeg); background-size: cover;">Poulet</button>
+			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/proteine/poulet.jpeg); background-size: cover;">Poulet</input>
 
-			<button style="background-image: url(img/proteine/dinde.jpg); background-size: cover;">Dinde</button>
+			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/proteine/dinde.jpg); background-size: cover;">Dinde</input>
 
-			<button id="saumon" type="submit" style="background-image: url(img/proteine/saumon.jpg); background-size: cover;">Saumon</button>
+			<input type=button class="buttonChoiceUserProfil"  style="background-image: url(img/proteine/saumon.jpg); background-size: cover;">Saumon</input>
 
-			<button style="background-image: url(img/proteine/thon.jpg); background-size: cover;">Thon</button>
+			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/proteine/thon.jpg); background-size: cover;">Thon</input>
 
-			<button>Calamar</button>
+			<input type=button class="buttonChoiceUserProfil">Calamar</input>
 			<br />
 			<br />
 
 			Légumes :<br />
 
-			<button>Haricot vert / rouge</button>
+			<input type=button class="buttonChoiceUserProfil">Haricot vert / rouge</input>
 
-			<button style="background-image: url(img/legumes/pommeDeTerre.jpg); background-size: cover;">Pommes de terre</button>
+			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/pommeDeTerre.jpg); background-size: cover;">Pommes de terre</input>
 
-			<button style="background-image: url(img/legumes/brocolis.jpg); background-size: cover;">Brocolis</button>
+			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/brocolis.jpg); background-size: cover;">Brocolis</input>
 
-			<button style="background-image: url(img/legumes/avocat.jpg); background-size: cover;">Avocat</button>
+			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/avocat.jpg); background-size: cover;">Avocat</input>
 
-			<button style="background-image: url(img/legumes/choux.jpg); background-size: cover;">Choux</button>
+			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/choux.jpg); background-size: cover;">Choux</input>
 
-			<button style="background-image: url(img/legumes/salade.jpg); background-size: cover;">Salade</button>
+			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/salade.jpg); background-size: cover;">Salade</input>
 
 
-			<button style="background-image: url(img/legumes/poivrons.jpg); background-size: cover;">Poivrons</button>
+			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/poivrons.jpg); background-size: cover;">Poivrons</input>
 
-			<button style="background-image: url(img/legumes/champignon.jpg); background-size: cover;">Champignons</button>
+			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/champignon.jpg); background-size: cover;">Champignons</input>
 
-			<button style="background-image: url(img/legumes/lentilles.jpg); background-size: cover;">Lentilles</button>
+			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/lentilles.jpg); background-size: cover;">Lentilles</input>
 
 			<br />
 			<br />
+			<?php
+			
+
+
+			?>
 			<input type="submit" name="addInfoUser" value="Enregistrer">
 		</form>
 		
 		
 
 	</main>
-<script type="text/javascript" src="js.questionProfil.js"></script>
+	
 </body>
 </html>
