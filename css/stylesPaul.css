@@ -127,14 +127,38 @@
 	flex-direction: row;
 	justify-content: space-around;
 	/* margin-bottom: 5%; */
-	align-items: center;
-	align-content: flex-end;
+	align-items: flex-end;
 }
 
 #cal-bottom-card{
 	margin: 0;
+	font-size: 13px;
 }
 
 #prix-flex{
 	margin-bottom: 0;
+}
+
+#cal-number-card{
+	margin: 0;
+}
+
+#card-group{
+	display: flex;
+}
+
+.card-body{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.calories-part{
+	display: flex;
+	justify-content: flex-end;
+}
+
+.card-title{
+	margin-top: 10.5%;
+	margin-left: 10.5%;
 }

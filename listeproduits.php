@@ -34,9 +34,6 @@
             <img id="toastimg" src="img/toplisteplatbanner.jpg">
         </div>
     <main class="container">
-        <div class="">
-            <img id="toastimg" src="img/toplisteplatbanner.jpg">
-        </div>
         <div id="aboveListePlats">
             <h5>Les plats</h5>
             <p>Fraîchement cuisinés !</p>
@@ -78,11 +75,14 @@
                     <div class="card-group col-lg-3 col-xs-6 col-md-4">
                         <div class="card" id="platsCards" style="width: 18rem;">
                             <img src="<?php echo "photoProduit/".$resultatPlats[$i][5].""; ?>" class="card-img-top" alt="...">
+                            <h5 class="card-title"><?php echo "".$resultatPlats[$i][1].""; ?></h5>
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo "".$resultatPlats[$i][1].""; ?></h5>
                                     <!-- <p class="card-text"><?php/* echo "".$resultatPlats[$i][2].""; */?></p> -->
                                     <div id="card-bottom-desc">
-                                        <p id="cal-bottom-card">Calories</p>
+                                        <div id="calories-part">
+                                            <p id="cal-number-card">3000</p>
+                                            <p id="cal-bottom-card">Calories</p>
+                                        </div>
                                         <?php echo "".$resultatPlats[$i][4]." €"; ?>
                                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal<?php echo "".$i.""; ?>">
                                             Infos
@@ -96,8 +96,29 @@
                             <div class="modal-content">
                                 <div class="modal-body">
                                     <div class="nav flex-sm-column flex-row">
-                                    <h1 class="card-title">
-                                    <img src="<?php echo "photoProduit/".$resultatPlats[$i][5].""; ?>" class="card-img-top" alt="...">
+                                    <h1 class="card-title2">
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="<?php echo "photoProduit/".$resultatPlats[$i][5].""; ?>" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="<?php echo "photoProduit/".$resultatPlats[$i][5].""; ?>" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
                                     <h3 id="titrePlats1"><?php echo "".$resultatPlats[$i][1].""; ?></h3>
                                     <div id="above-modal-desc">
                                         <p id="valeur-nutri-p">Valeur nutritionnelle</p>
