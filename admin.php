@@ -288,13 +288,13 @@ ob_start();
 									$extensionsUpload = strtolower(substr(strrchr($_FILES['img1Produit']['name'], '.'), 1));
 									if (in_array($extensionsUpload, $extensionsValides)) 
 									{
-										$chemin = "photoProduit/".$_POST['nameProduit']."1.".$extensionsUpload;
+										$chemin = "photoProduit/".$_FILES['img1Produit']['name'].$extensionsUpload;
 
 										$deplacement = move_uploaded_file($_FILES['img1Produit']['tmp_name'], $chemin);
 
 										if ($deplacement) 
 										{
-											$img1 = $_POST['nameProduit']."1.".$extensionsUpload;
+											$img1 = $_FILES['img1Produit']['name'].$extensionsUpload;
 										}
 										else
 										{
@@ -324,13 +324,13 @@ ob_start();
 									$extensionsUpload = strtolower(substr(strrchr($_FILES['img2Produit']['name'], '.'), 1));
 									if (in_array($extensionsUpload, $extensionsValides)) 
 									{
-										$chemin = "photoProduit/".$_POST['nameProduit']."2.".$extensionsUpload;
+										$chemin = "photoProduit/".$_FILES['img2Produit']['name'].$extensionsUpload;
 
 										$deplacement = move_uploaded_file($_FILES['img2Produit']['tmp_name'], $chemin);
 
 										if ($deplacement) 
 										{
-											$img2 = $_POST['nameProduit']."2.".$extensionsUpload;
+											$img2 = $_FILES['img2Produit']['name'].$extensionsUpload;
 										}
 										else
 										{
@@ -484,13 +484,13 @@ ob_start();
 
 												if (empty($id_categorieUpdate)) 
 												{
-													$id_categorieUpdate = $updateProduit[0][3];
+													$id_categorieUpdate = $updateProduit[0][4];
 												}
 
 
 												
 
-												
+											
 
 
 												if ($_FILES['updateImg1Produit']['size'] <= 2097152 && $_FILES['updateImg1Produit']['error'] == 0)
@@ -504,16 +504,9 @@ ob_start();
 														$extensionsUpload = strtolower(substr(strrchr($_FILES['updateImg1Produit']['name'], '.'), 1));
 														if (in_array($extensionsUpload, $extensionsValides)) 
 														{
-															if (!empty($updateNom)) 
-															{
+															
 
-																$chemin = "photoProduit/".$_POST['updateNameProduit']."1.".$extensionsUpload;
-															}
-															else
-															{
-
-																$chemin = "photoProduit/".$updateProduit[0][1]."1.".$extensionsUpload;
-															}
+															$chemin = "photoProduit/".$_FILES['updateImg1Produit']['name'].$extensionsUpload;
 
 
 
@@ -521,15 +514,9 @@ ob_start();
 
 															if ($deplacement) 
 															{
-																if (!empty($updateNom))
-																{
-																	$updateImg1 = $_POST['updateNameProduit']."1.".$extensionsUpload;
-																}
-																else
-																{
-																	$updateImg1 = $updateProduit[0][1]."1.".$extensionsUpload;
-																}
-
+																$updateImg1 = $_FILES['updateImg1Produit']['name'].$extensionsUpload;
+																
+																
 															}
 															else
 															{
@@ -549,9 +536,10 @@ ob_start();
 													}
 												}
 												else
-												{									
-													$updateImg1 = $updateProduit[0][5];										
+												{
+													$updateImg1 ='';
 												}
+												
 
 
 												if ($_FILES['updateImg2Produit']['size'] <= 2097152 && $_FILES['updateImg2Produit']['error'] == 0)
@@ -565,31 +553,17 @@ ob_start();
 														$extensionsUpload = strtolower(substr(strrchr($_FILES['updateImg2Produit']['name'], '.'), 1));
 														if (in_array($extensionsUpload, $extensionsValides)) 
 														{
-															if (!empty($updateNom)) 
-															{
-
-																$chemin = "photoProduit/".$_POST['updateNameProduit']."2.".$extensionsUpload;
-															}
-															else
-															{
-
-																$chemin = "photoProduit/".$updateProduit[0][1]."2.".$extensionsUpload;
-															}
-
-
+															
+															$chemin = "photoProduit/".$_FILES['updateImg2Produit']['name'].$extensionsUpload;
 
 															$deplacement = move_uploaded_file($_FILES['updateImg2Produit']['tmp_name'], $chemin);
 
 															if ($deplacement) 
 															{
-																if (!empty($updateNom))
-																{
-																	$updateImg2 = $_POST['updateNameProduit']."2.".$extensionsUpload;
-																}
-																else
-																{
-																	$updateImg2 = $updateProduit[0][1]."2.".$extensionsUpload;
-																}
+																
+																$updateImg2 = $_FILES['updateImg2Produit']['name'].$extensionsUpload;
+																
+																
 
 															}
 															else
@@ -610,10 +584,11 @@ ob_start();
 													}
 												}
 												else
-												{									
-													$updateImg2 = $updateProduit[0][6];										
+												{
+													$updateImg2 = '';
 												}
-
+												
+												
 												
 
 												$nameProduit = $bdd->execute("SELECT nom FROM plats WHERE nom = '$updateNom'");

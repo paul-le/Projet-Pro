@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 01 juil. 2020 à 14:31
--- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Généré le :  sam. 18 juil. 2020 à 17:53
+-- Version du serveur :  8.0.18
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,15 +33,17 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `categorie`
 --
 
 INSERT INTO `categorie` (`id`, `nom`) VALUES
-(2, 'CATE 1'),
-(3, 'CATE 2');
+(7, 'CAT 1'),
+(5, 'CAT 2'),
+(13, 'categ'),
+(9, 'CAT 3');
 
 -- --------------------------------------------------------
 
@@ -62,6 +64,63 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `goututilisateurs`
+--
+
+DROP TABLE IF EXISTS `goututilisateurs`;
+CREATE TABLE IF NOT EXISTS `goututilisateurs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_utilisateur` int(11) NOT NULL,
+  `boeuf` int(11) NOT NULL,
+  `poulet` int(11) NOT NULL,
+  `dinde` int(11) NOT NULL,
+  `saumon` int(11) NOT NULL,
+  `thon` int(11) NOT NULL,
+  `calamar` int(11) NOT NULL,
+  `haricots` int(11) NOT NULL,
+  `pommeDeTerre` int(11) NOT NULL,
+  `brocolis` int(11) NOT NULL,
+  `avocat` int(11) NOT NULL,
+  `choux` int(11) NOT NULL,
+  `salade` int(11) NOT NULL,
+  `poivrons` int(11) NOT NULL,
+  `champignons` int(11) NOT NULL,
+  `lentilles` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `goututilisateurs`
+--
+
+INSERT INTO `goututilisateurs` (`id`, `id_utilisateur`, `boeuf`, `poulet`, `dinde`, `saumon`, `thon`, `calamar`, `haricots`, `pommeDeTerre`, `brocolis`, `avocat`, `choux`, `salade`, `poivrons`, `champignons`, `lentilles`) VALUES
+(1, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ingredients`
+--
+
+DROP TABLE IF EXISTS `ingredients`;
+CREATE TABLE IF NOT EXISTS `ingredients` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `ingredients`
+--
+
+INSERT INTO `ingredients` (`id`, `nom`) VALUES
+(1, 'Boeuf'),
+(2, 'Saumon'),
+(3, 'Poulet');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `panier`
 --
 
@@ -69,10 +128,20 @@ DROP TABLE IF EXISTS `panier`;
 CREATE TABLE IF NOT EXISTS `panier` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_utilisateur` int(11) NOT NULL,
+  `id_produit` int(11) NOT NULL,
   `quantite` int(11) NOT NULL,
   `prix` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `panier`
+--
+
+INSERT INTO `panier` (`id`, `id_utilisateur`, `id_produit`, `quantite`, `prix`) VALUES
+(1, 4, 8, 1, 25),
+(2, 4, 9, 1, 25),
+(7, 4, 10, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -85,20 +154,19 @@ CREATE TABLE IF NOT EXISTS `plats` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `id_categorie` int(11) NOT NULL,
   `prix` float NOT NULL,
-  `img` varchar(255) NOT NULL,
-  `viande` varchar(255) NOT NULL,
+  `id_categorie` int(11) NOT NULL,
+  `img1` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `img2` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `plats`
 --
 
-INSERT INTO `plats` (`id`, `nom`, `description`, `id_categorie`, `prix`, `img`, `viande`) VALUES
-(13, 'ZZZZ', 'descritpion', 3, 34, '2eeme.jpg', 'non'),
-(12, 'nomImg', 'IMG CHANGE', 2, 20, 'changeNameImg.png', 'oui');
+INSERT INTO `plats` (`id`, `nom`, `description`, `prix`, `id_categorie`, `img1`, `img2`) VALUES
+(30, 'nom', 'salade', 10, 7, '330515.jpgjpg', '748855.jpgjpg');
 
 -- --------------------------------------------------------
 
@@ -112,19 +180,16 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `utilisateurs`
 --
 
 INSERT INTO `utilisateurs` (`id`, `login`, `password`) VALUES
-(1, 'aze', '$2y$12$cZHmxG2BxZPPUMn2LMCviOlIVC0ImcWFgd54e0p4r94AcXxHZaumm'),
-(2, 'azer', '$2y$12$UkkXXCPzvnvACu33m3TxM.CI/rhhAWLg4oxaa8KLcVtKLrhy1S/rO'),
-(13, 'qsd', '$2y$12$qZ7TGQ/rPG1BoA4PaLIBb.5QaJVokGvdG4ph59iXVlhke7aguSKSC'),
-(12, 'Kuro', '$2y$12$2NIINog9Q0WljSOwPjz8Z.dCxFOkosSkuvNqUvB8Cm6acCihPvAU2'),
-(10, 'lop', '$2y$12$p.DvV.1PSUW8PjJN0Ku.TO3hd3khHCKpdRtlmiQwQa8A91OSa4NzC'),
-(14, 'adminTEST', '$2y$12$GKLVgxBooQhm/m2GM1ntiOZL2Uz.tBfslCLlE7OvN3wVqWbmi6ymm');
+(3, 'lop change', '$2y$12$NvmuwOGLLHpESrrtX6oJ2eJXK8MMqD7QSiOcWyShUJPiped4gB9AO'),
+(2, 'Katakuri', '$2y$12$.6j3M8nb4tjhP6I6us5M3u9F05u02XuU3GXTXLY.jqNPeaY5r0vXi'),
+(4, 'admin', '$2y$12$ye935Pc9V7CHMlYoJAd65uX8MCL2upmVRYb2koPNLf9JEZo6U3NFW');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -9,10 +9,10 @@ $bdd = new bdd();
 
 $bdd->connect();
 
-$user = $bdd->execute("SELECT * FROM utilisateurs WHERE id = '".$_SESSION['id']."' ");
+$userInfo = $bdd->execute("SELECT * FROM utilisateurs WHERE id = '".$_SESSION['id']."' ");
 
 
-var_dump($user);
+var_dump($userInfo);
 
 ?>
 
@@ -21,8 +21,7 @@ var_dump($user);
 <head>
 	<title>Profil</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript" src="js/userInfo.js"></script>
+	
 
 
 </head>
@@ -34,7 +33,7 @@ var_dump($user);
 
 				<div>
 
-					<label>Login</label> : <input type="text" name="updateLogin" placeholder="<?php echo $user[0][1]; ?>"><br />
+					<label>Login</label> : <input type="text" name="updateLogin" placeholder="<?php echo $userInfo[0][1]; ?>"><br />
 					<label>Mot de passe</label>   : <input type="password" name="updatePassword"><br />
 					<label>Confirmation mot de passe</label>  : <input type="password" name="updateConfPassword">
 					<br />
@@ -96,61 +95,258 @@ var_dump($user);
 			</form>
 		</div>
 
-		<h2>VOS GOUT :</h2>
-		Proteines :<br />
-		<div class="choice" style="background-image: url(img/proteine/boeuf.jpg); background-size: cover; width: 50%;">
-			<input id="choice_1" type="checkbox" name="choice_1" value="choice_1" />
-			<label for="choice_1">Boeuf</label>
-		</div>
-		<form method="post" action="">
-			<
+		
 
-			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/proteine/poulet.jpeg); background-size: cover;">Poulet</input>
+		<form action="" method="post">
+			<h2>VOS GOUT :</h2>
+			-Proteines :<br />
 
-			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/proteine/dinde.jpg); background-size: cover;">Dinde</input>
+			<div class="choice">
+				<input id="boeuf" type="checkbox" name="boeuf" value="boeuf" />
+				<label for="boeuf">Boeuf</label>
+			</div>
 
-			<input type=button class="buttonChoiceUserProfil"  style="background-image: url(img/proteine/saumon.jpg); background-size: cover;">Saumon</input>
-
-			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/proteine/thon.jpg); background-size: cover;">Thon</input>
-
-			<input type=button class="buttonChoiceUserProfil">Calamar</input>
-			<br />
-			<br />
-
-			Légumes :<br />
-
-			<input type=button class="buttonChoiceUserProfil">Haricot vert / rouge</input>
-
-			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/pommeDeTerre.jpg); background-size: cover;">Pommes de terre</input>
-
-			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/brocolis.jpg); background-size: cover;">Brocolis</input>
-
-			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/avocat.jpg); background-size: cover;">Avocat</input>
-
-			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/choux.jpg); background-size: cover;">Choux</input>
-
-			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/salade.jpg); background-size: cover;">Salade</input>
+			<div class="choice">
+				<input id="poulet" type="checkbox" name="poulet" value="poulet" />
+				<label for="poulet">Poulet</label>
+			</div>
 
 
-			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/poivrons.jpg); background-size: cover;">Poivrons</input>
+			<div class="choice">    
+				<input id="dinde" type="checkbox" name="dinde" value="dinde" />
+				<label for="dinde">Dinde</label>
+			</div>
 
-			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/champignon.jpg); background-size: cover;">Champignons</input>
+			<div class="choice">
+				<input id="saumon" type="checkbox" name="saumon" value="saumon" />
+				<label for="saumon">Saumon</label>
+			</div>
 
-			<input type=button class="buttonChoiceUserProfil" style="background-image: url(img/legumes/lentilles.jpg); background-size: cover;">Lentilles</input>
-
-			<br />
-			<br />
-			<?php
-			
+			<div class="choice">
+				<input id="thon" type="checkbox" name="thon" value="thon" />
+				<label for="thon">Thon</label>
+			</div>
 
 
-			?>
-			<input type="submit" name="addInfoUser" value="Enregistrer">
+			<div class="choice">    
+				<input id="calamar" type="checkbox" name="calamar" value="calamar" />
+				<label for="calamar">Calamar</label>
+			</div>
+
+			-Légumes : 
+			<div class="choice">
+				<input id="haricots" type="checkbox" name="haricots" value="haricots" />
+				<label for="haricots">Haricots Vert/Rouge</label>
+			</div>
+
+			<div class="choice">
+				<input id="pommeDeTerre" type="checkbox" name="pommeDeTerre" value="pommeDeTerre" />
+				<label for="pommeDeTerre">Pomme de terre</label>
+			</div>
+
+
+			<div class="choice">    
+				<input id="brocolis" type="checkbox" name="brocolis" value="brocolis" />
+				<label for="brocolis">Brocolis</label>
+			</div>
+
+			<div class="choice">
+				<input id="avocat" type="checkbox" name="avocat" value="avocat" />
+				<label for="avocat">avocat</label>
+			</div>
+
+			<div class="choice">
+				<input id="choux" type="checkbox" name="choux" value="choux" />
+				<label for="choux">Choux</label>
+			</div>
+
+
+			<div class="choice">    
+				<input id="salade" type="checkbox" name="salade" value="salade" />
+				<label for="salade">Salade</label>
+			</div>
+
+			<div class="choice">
+				<input id="poivrons" type="checkbox" name="poivrons" value="poivrons" />
+				<label for="poivrons">Poivrons</label>
+			</div>
+
+			<div class="choice">
+				<input id="champignons" type="checkbox" name="champignons" value="champignons" />
+				<label for="champignons">Champignon</label>
+			</div>
+
+			<div class="choice">
+				<input id="lentilles" type="checkbox" name="lentilles" value="lentilles" />
+				<label for="lentilles">Lentilles</label>
+			</div>
+
+			<input type="submit" name="gout" value="Enregistrer">
 		</form>
-		
-		
 
+		<?php
+		if (isset($_POST["gout"])) 
+		{
+			if (isset($_POST["boeuf"])) 
+			{
+				$boeuf = $_POST["boeuf"] ;
+				$boeuf = 1;
+			}
+			else
+			{
+				$boeuf = 0 ;
+			}
+
+			if (isset($_POST["poulet"]))
+			{
+				$poulet = $_POST["poulet"] ;
+				$poulet = 1;
+			}
+			else
+			{
+				$poulet = 0 ;
+			}
+
+			if (isset($_POST["dinde"])) 
+			{
+				$dinde = $_POST["dinde"] ;
+				$dinde = 1;
+
+			}
+			else
+			{
+				$dinde = 0 ;
+			}
+
+			if (isset($_POST["saumon"])) 
+			{
+				$saumon = $_POST["saumon"] ;
+				$saumon = 1;
+			}
+			else
+			{
+				$saumon = 0 ;
+			}
+
+			if (isset($_POST["thon"]))
+			{
+				$thon = $_POST["thon"] ;
+				$thon = 1;
+			}
+			else
+			{
+				$thon = 0 ;
+			}
+
+			if (isset($_POST["calamar"]))
+			{
+				$calamar = $_POST["calamar"] ;
+				$calamar = 1;
+			}
+			else
+			{
+				$calamar = 0 ;
+			}
+
+			if (isset($_POST["haricots"])) 
+			{
+				$haricots = $_POST["haricots"] ;
+				$haricots = 1;
+			}
+			else
+			{
+				$haricots = 0 ;
+			}
+
+			if (isset($_POST["pommeDeTerre"]))
+			{
+				$pommeDeTerre = $_POST["pommeDeTerre"] ;
+				$pommeDeTerre = 1;
+			}
+			else
+			{
+				$pommeDeTerre = 0 ;
+			}
+
+			if (isset($_POST["brocolis"]))
+			{
+				$brocolis = $_POST["brocolis"] ;
+				$brocolis = 1;
+			}
+			else
+			{
+				$brocolis = 0 ;
+			}
+
+			if (isset($_POST["avocat"])) 
+			{
+				$avocat = $_POST["avocat"] ;
+				$avocat = 1;
+			}
+			else
+			{
+				$avocat = 0 ;
+			}
+
+			if (isset($_POST["choux"]))
+			{
+				$choux = $_POST["choux"] ;
+				$choux = 1;
+			}
+			else
+			{
+				$choux = 0 ;
+			}
+
+			if (isset($_POST["salade"]))
+			{
+				$salade = $_POST["salade"] ;
+				$salade = 1;
+			}
+			else
+			{
+				$salade = 0 ;
+			}
+
+			if (isset($_POST["poivrons"]))
+			{
+				$poivrons = $_POST["poivrons"] ;
+				$poivrons = 1;
+			}
+			else
+			{
+				$poivrons = 0 ;
+			}
+
+			if (isset($_POST["champignons"]))
+			{
+				$champignons = $_POST["champignons"] ;
+				$champignons = 1;
+			}
+			else
+			{
+				$champignons = 0 ;
+			}
+
+			if (isset($_POST["lentilles"]))
+			{
+				$lentilles = $_POST["lentilles"] ;
+				$lentilles = 1;
+			}
+			else
+			{
+				$lentilles = 0 ;
+			}
+
+			$user->addPreferenceGout($userInfo[0][0], $boeuf, $poulet, $dinde, $saumon, $thon, $calamar, $haricots, $pommeDeTerre, $brocolis, $avocat, $choux, $salade, $poivrons, $champignons, $lentilles, $bdd);
+
+			
+		}
+		?>
+	
 	</main>
+	<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="js/userInfo.js"></script>
 	
 </body>
 </html>

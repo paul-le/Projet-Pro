@@ -1,20 +1,24 @@
 $(document).ready(function() {
     var choices = $('.choice');
-
+    
     choices.on('click', function(event) {
         var choice = $(event.target);
-        choice
-            .find('[name="choice"]')
-            .prop('checked', true)
+        var input = choice.find('[type="checkbox"]');
+        input
+            .prop('checked', !input.is(':checked'))
             .trigger('change');
     });
-
+    
     var inputs = $('.choice input');
     inputs.on('change', function(event) {
         var input = $(event.target);
         var choice = $(this).closest('.choice');
-
-        $('.choice.active').removeClass('active');
-        choice.addClass('active');
+        
+        if (input.is(':checked')) {
+            choice.addClass('active');
+        }
+        else {
+            choice.removeClass('active');
+        }
     });
-});​
+});

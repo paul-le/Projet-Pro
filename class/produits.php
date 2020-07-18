@@ -86,13 +86,13 @@
 			if (!empty($updateNom)) 
 			{
 				$update = $bdd->executeonly("UPDATE plats SET nom = '$updateNom' WHERE id ='$id' ");
-				
+				header('location:admin.php');
 			}
 			
 			if (!empty($updateDescription)) 
 			{
 				$update = $bdd->executeonly("UPDATE plats SET description = '$updateDescription' WHERE id ='$id' ");
-				
+				header('location:admin.php');
 
 			}
 
@@ -100,29 +100,61 @@
 			{
 				
 				$update = $bdd->executeonly("UPDATE plats SET prix = '$updatePrix' WHERE id ='$id'");
-				
-				
+				header('location:admin.php');
 			}
 
 			if (!empty($updateCategorie)) 
 			{
 				$update = $bdd->executeonly("UPDATE plats SET id_categorie = '$updateCategorie' WHERE id ='$id'");
+				header('location:admin.php');
 				
 			}
 
 			if (!empty($updateImg1)) 
 			{
-				$img = $bdd->executeonly("UPDATE plats SET img1 = 0 WHERE id = '$id'");
-				$update = $bdd->executeonly("UPDATE plats SET img1 = '$updateImg1' WHERE id ='$id' ");
+				$img = $bdd->execute("SELECT img1 FROM plats WHERE id = '$id' ");
+				var_dump($img);
+				$filePath = 'photoProduit/'.$img[0][0];
+				if (file_exists($filePath)) 
+				{
+					unlink($filePath);
+					$update = $bdd->executeonly("UPDATE plats set img1 = '$updateImg1' WHERE id ='$id'  ");
+					echo "UPDATE plats set img1 = '$updateImg1' WHERE id ='$id' ";
+					header('location:admin.php');
+				}
+				else
+				{
+					echo "File does not exists"; 
+				}
+
+				
 				
 			}
+			
 
 			if (!empty($updateImg2))
 			{
-				$img = $bdd->executeonly("UPDATE plats SET img2 = 0 WHERE id = '$id'");
-				$update = $bdd->executeonly("UPDATE plats SET img2 = '$updateImg2' WHERE id ='$id' ");
+				$img = $bdd->execute("SELECT img2 FROM plats WHERE id = '$id' ");
+				
+				var_dump($img);
+				$filePath = 'photoProduit/'.$img[0][0];
+				if (file_exists($filePath)) 
+				{
+					unlink($filePath);
+					$update = $bdd->executeonly("UPDATE plats set img2 = '$updateImg2' WHERE id ='$id' ");
+					echo "UPDATE plats set img2 = '$updateImg2' WHERE id ='$id'   ";
+					header('location:admin.php');
+				}
+				else
+				{
+					echo "File does not exists"; 
+				}
+
+				
 				
 			}
+			
+
 		}
 
 		
