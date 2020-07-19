@@ -101,91 +101,99 @@ var_dump($userInfo);
 			<h2>VOS GOUT :</h2>
 			-Proteines :<br />
 
-			<div class="choice">
-				<input id="boeuf" type="checkbox" name="boeuf" value="boeuf" />
-				<label for="boeuf">Boeuf</label>
-			</div>
+			<section id="proteines">
+				<div class="choice" id="boeuf">
+					<input id="boeuf" type="checkbox" name="boeuf" value="boeuf" />
+					<label for="boeuf">Boeuf</label>
+				</div>
 
-			<div class="choice">
-				<input id="poulet" type="checkbox" name="poulet" value="poulet" />
-				<label for="poulet">Poulet</label>
-			</div>
-
-
-			<div class="choice">    
-				<input id="dinde" type="checkbox" name="dinde" value="dinde" />
-				<label for="dinde">Dinde</label>
-			</div>
-
-			<div class="choice">
-				<input id="saumon" type="checkbox" name="saumon" value="saumon" />
-				<label for="saumon">Saumon</label>
-			</div>
-
-			<div class="choice">
-				<input id="thon" type="checkbox" name="thon" value="thon" />
-				<label for="thon">Thon</label>
-			</div>
+				<div class="choice" id="poulet">
+					<input id="poulet" type="checkbox" name="poulet" value="poulet" />
+					<label for="poulet">Poulet</label>
+				</div>
 
 
-			<div class="choice">    
-				<input id="calamar" type="checkbox" name="calamar" value="calamar" />
-				<label for="calamar">Calamar</label>
-			</div>
+				<div class="choice" id="dinde">    
+					<input id="dinde" type="checkbox" name="dinde" value="dinde" />
+					<label for="dinde">Dinde</label>
+				</div>
+
+				<div class="choice" id="saumon">
+					<input id="saumon" type="checkbox" name="saumon" value="saumon" />
+					<label for="saumon">Saumon</label>
+				</div>
+
+				<div class="choice" id="thon">
+					<input id="thon" type="checkbox" name="thon" value="thon" />
+					<label for="thon">Thon</label>
+				</div>
+
+
+				<div class="choice" id="calamar">    
+					<input id="calamar" type="checkbox" name="calamar" value="calamar" />
+					<label for="calamar">Calamar</label>
+				</div>
+				
+			</section>
+			
 
 			-Légumes : 
-			<div class="choice">
-				<input id="haricots" type="checkbox" name="haricots" value="haricots" />
-				<label for="haricots">Haricots Vert/Rouge</label>
-			</div>
+			<section id="legumes">
+				<div class="choice" id="haricots">
+					<input id="haricots" type="checkbox" name="haricots" value="haricots" />
+					<label for="haricots">Haricots Vert/Rouge</label>
+				</div>
 
-			<div class="choice">
-				<input id="pommeDeTerre" type="checkbox" name="pommeDeTerre" value="pommeDeTerre" />
-				<label for="pommeDeTerre">Pomme de terre</label>
-			</div>
-
-
-			<div class="choice">    
-				<input id="brocolis" type="checkbox" name="brocolis" value="brocolis" />
-				<label for="brocolis">Brocolis</label>
-			</div>
-
-			<div class="choice">
-				<input id="avocat" type="checkbox" name="avocat" value="avocat" />
-				<label for="avocat">avocat</label>
-			</div>
-
-			<div class="choice">
-				<input id="choux" type="checkbox" name="choux" value="choux" />
-				<label for="choux">Choux</label>
-			</div>
+				<div class="choice" id="pommeDeTerre">
+					<input id="pommeDeTerre" type="checkbox" name="pommeDeTerre" value="pommeDeTerre" />
+					<label for="pommeDeTerre">Pomme de terre</label>
+				</div>
 
 
-			<div class="choice">    
-				<input id="salade" type="checkbox" name="salade" value="salade" />
-				<label for="salade">Salade</label>
-			</div>
+				<div class="choice" id="brocolis">    
+					<input id="brocolis" type="checkbox" name="brocolis" value="brocolis" />
+					<label for="brocolis">Brocolis</label>
+				</div>
 
-			<div class="choice">
-				<input id="poivrons" type="checkbox" name="poivrons" value="poivrons" />
-				<label for="poivrons">Poivrons</label>
-			</div>
+				<div class="choice" id="avocat">
+					<input id="avocat" type="checkbox" name="avocat" value="avocat" />
+					<label for="avocat">Avocat</label>
+				</div>
 
-			<div class="choice">
-				<input id="champignons" type="checkbox" name="champignons" value="champignons" />
-				<label for="champignons">Champignon</label>
-			</div>
+				<div class="choice" id="choux">
+					<input id="choux" type="checkbox" name="choux" value="choux" />
+					<label for="choux">Choux</label>
+				</div>
 
-			<div class="choice">
-				<input id="lentilles" type="checkbox" name="lentilles" value="lentilles" />
-				<label for="lentilles">Lentilles</label>
-			</div>
 
-			<input type="submit" name="gout" value="Enregistrer">
+				<div class="choice" id="salade">    
+					<input id="salade" type="checkbox" name="salade" value="salade" />
+					<label for="salade">Salade</label>
+				</div>
+
+				<div class="choice" id="poivrons">
+					<input id="poivrons" type="checkbox" name="poivrons" value="poivrons" />
+					<label for="poivrons">Poivrons</label>
+				</div>
+
+				<div class="choice" id="champignons">
+					<input id="champignons" type="checkbox" name="champignons" value="champignons" />
+					<label for="champignons">Champignon</label>
+				</div>
+
+				<div class="choice" id="lentilles">
+					<input id="lentilles" type="checkbox" name="lentilles" value="lentilles" />
+					<label for="lentilles">Lentilles</label>
+				</div>
+				
+			</section>
+			
+
+			<input type="submit" name="preference" value="Enregistrer">
 		</form>
 
 		<?php
-		if (isset($_POST["gout"])) 
+		if (isset($_POST["preference"])) 
 		{
 			if (isset($_POST["boeuf"])) 
 			{

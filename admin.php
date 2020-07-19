@@ -288,13 +288,13 @@ ob_start();
 									$extensionsUpload = strtolower(substr(strrchr($_FILES['img1Produit']['name'], '.'), 1));
 									if (in_array($extensionsUpload, $extensionsValides)) 
 									{
-										$chemin = "photoProduit/".$_FILES['img1Produit']['name'].$extensionsUpload;
+										$chemin = "photoProduit/".$_FILES['img1Produit']['name'];
 
 										$deplacement = move_uploaded_file($_FILES['img1Produit']['tmp_name'], $chemin);
 
 										if ($deplacement) 
 										{
-											$img1 = $_FILES['img1Produit']['name'].$extensionsUpload;
+											$img1 = $_FILES['img1Produit']['name'];
 										}
 										else
 										{
@@ -324,13 +324,13 @@ ob_start();
 									$extensionsUpload = strtolower(substr(strrchr($_FILES['img2Produit']['name'], '.'), 1));
 									if (in_array($extensionsUpload, $extensionsValides)) 
 									{
-										$chemin = "photoProduit/".$_FILES['img2Produit']['name'].$extensionsUpload;
+										$chemin = "photoProduit/".$_FILES['img2Produit']['name'];
 
 										$deplacement = move_uploaded_file($_FILES['img2Produit']['tmp_name'], $chemin);
 
 										if ($deplacement) 
 										{
-											$img2 = $_FILES['img2Produit']['name'].$extensionsUpload;
+											$img2 = $_FILES['img2Produit']['name'];
 										}
 										else
 										{
@@ -506,7 +506,7 @@ ob_start();
 														{
 															
 
-															$chemin = "photoProduit/".$_FILES['updateImg1Produit']['name'].$extensionsUpload;
+															$chemin = "photoProduit/".$_FILES['updateImg1Produit']['name'];
 
 
 
@@ -514,7 +514,7 @@ ob_start();
 
 															if ($deplacement) 
 															{
-																$updateImg1 = $_FILES['updateImg1Produit']['name'].$extensionsUpload;
+																$updateImg1 = $_FILES['updateImg1Produit']['name'];
 																
 																
 															}
@@ -554,14 +554,14 @@ ob_start();
 														if (in_array($extensionsUpload, $extensionsValides)) 
 														{
 															
-															$chemin = "photoProduit/".$_FILES['updateImg2Produit']['name'].$extensionsUpload;
+															$chemin = "photoProduit/".$_FILES['updateImg2Produit']['name'];
 
 															$deplacement = move_uploaded_file($_FILES['updateImg2Produit']['tmp_name'], $chemin);
 
 															if ($deplacement) 
 															{
 																
-																$updateImg2 = $_FILES['updateImg2Produit']['name'].$extensionsUpload;
+																$updateImg2 = $_FILES['updateImg2Produit']['name'];
 																
 																
 

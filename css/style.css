@@ -312,6 +312,116 @@
 .active {
     background-color: rgb(0, 0, 0, 0.5);
 }
+
+#proteines{
+	display: flex;
+	flex-direction: row;
+}
+
+#legumes{
+	display: flex;
+	flex-direction: row;
+}
+
+/*---------Proteines---------*/
+/*---------Proteines---------*/
+/*---------Proteines---------*/
+
+
+#boeuf{
+	text-align: center;
+	background-image: url("../img/proteine/boeuf.png");
+	background-size: cover;
+}
+
+#poulet{
+	text-align: center;
+	background-image: url("../img/proteine/poulet.png");
+	background-size: cover;
+}
+
+#dinde{
+	text-align: center;
+	background-image: url("../img/proteine/dinde.jpg");
+	background-size: cover;
+}
+
+#saumon{
+	text-align: center;
+	background-image: url("../img/proteine/saumon.jpg");
+	background-size: cover;
+}
+
+#thon{
+	text-align: center;
+	background-image: url("../img/proteine/thon.jpg");
+	background-size: cover;
+}
+
+#calamar{
+	text-align: center;
+	background-image: url("../img/proteine/calamar.jpg");
+	background-size: cover;
+}
+
+/*---------Legumes---------*/
+/*---------Legumes---------*/
+/*---------Legumes---------*/
+
+
+#haricots{
+	text-align: center;
+	background-image: url("../img/legumes/haricots.png");
+	background-size: cover;
+}
+
+#pommeDeTerre{
+	text-align: center;
+	background-image: url("../img/legumes/pommeDeTerre.jpeg");
+	background-size: cover;
+}
+
+#brocolis{
+	text-align: center;
+	background-image: url("../img/legumes/brocolis.jpg");
+	background-size: cover;
+}
+
+#avocat{
+	text-align: center;
+	background-image: url("../img/legumes/avocat.jpg");
+	background-size: cover;
+}
+
+#choux{
+	text-align: center;
+	background-image: url("../img/legumes/choux.jpg");
+	background-size: cover;
+}
+
+#salade{
+	text-align: center;
+	background-image: url("../img/legumes/salade.jpg");
+	background-size: cover;
+}
+
+#poivrons{
+	text-align: center;
+	background-image: url("../img/legumes/poivrons.jpg");
+	background-size: cover;
+}
+
+#champignons{
+	text-align: center;
+	background-image: url("../img/legumes/champignons.jpg");
+	background-size: cover;
+}
+
+#lentilles{
+	text-align: center;
+	background-image: url("../img/legumes/lentilles.jpg");
+	background-size: cover;
+}
 /*----------------------PANIER---------------------*/
 /*----------------------PANIER---------------------*/
 /*----------------------PANIER---------------------*/
