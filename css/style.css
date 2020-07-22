@@ -316,11 +316,13 @@
 #proteines{
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 #legumes{
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 /*---------Proteines---------*/
