@@ -4,17 +4,14 @@
 
     $vegan = $_POST['isVegan'];
 
-    function getPlats($isVegan = ""){
+    function getPlats($vegan = ""){
 
-        if($isVegan == ""){
+        if($vegan == ""){
 
         $requeteVegan = "SELECT * FROM plats";
         }
-        elseif($isVegan == 'non'){
-            $requeteVegan = "SELECT * FROM plats WHERE viande = 'non' ";
-        }
         else{
-            $requeteVegan = "SELECT * FROM plats WHERE viande = 'oui' ";
+            $requeteVegan = "SELECT * FROM plats WHERE description LIKE '%$vegan%' ";
         }
 
         $connexion = mysqli_connect("localhost","root","","projetpro");

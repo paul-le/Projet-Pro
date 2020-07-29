@@ -1,6 +1,5 @@
 <?php
 session_start();
-ob_start();
 
 require 'class/bdd.php';
 require 'class/user.php';
@@ -15,10 +14,13 @@ $bdd->connect();
 $categorie = $bdd->execute("SELECT * FROM categorie");
 $nbCat = count($categorie);
 
+$ingredients = $bdd->execute("SELECT * FROM ingredients");
+$nbIngredients = count($ingredients);
+
 $plats = $bdd->execute("SELECT * FROM plats INNER JOIN categorie ON plats.id_categorie = categorie.id");
 $nbPlats = count($plats);
 
-
+ob_start(); 
 
 
 
@@ -29,7 +31,6 @@ $nbPlats = count($plats);
 <html>
 <head>
 	<title>ADMIN</title>
-	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -44,13 +45,13 @@ $nbPlats = count($plats);
 			
 			<section id="addCategorie">
 				<div id="titreAddCategorie">
-					Ajouter Categorie
+					Ajouter Categorie / Ingredient
 				</div>
 
 				
 				<form action="" method="post">
 
-					Nom :<br /> <input type="text" name="nameCategorie"><br />
+					Categorie :<br /> <input type="text" name="nameCategorie"><br />
 
 					<input type="submit" name="newCategorie" value="Ajouter">
 				</form>
@@ -75,66 +76,149 @@ $nbPlats = count($plats);
 
 				?>
 
+				<form action="" method="post">
+
+					Ingredient :<br /> <input type="text" name="nameIngredient"><br />
+
+					<input type="submit" name="newIngredient" value="Ajouter">
+				</form>
+				<?php
+				if (isset($_POST['newIngredient'])) 
+				{
+					$nom = $_POST['nameIngredient'];
+					if ($produit->addIngredient($nom, $bdd) == "newIngredient") 
+					{
+						echo "Ingredient Ajouter";
+						header('location:admin.php');
+					}
+					elseif ($produit->addIngredient($nom, $bdd) == "ingredientExistant") 
+					{
+						echo "Cet ingredient existe deja";
+					}
+					elseif ($produit->addIngredient($nom, $bdd) == "info") 
+					{
+						echo "Veuillez entrer un nom ";
+					}
+				}
+
+				?>
+
 
 				<br />
 
 
 
 				<div id="titreListeCategorie">
-					Liste Categorie
+					Liste Categorie & Ingredients
 				</div>
-				
-				<?php
+				<section id="listeCatIng">
+					
+					<div id="listeCategorie">
+
+						<?php
+
+						if (!empty($categorie)) 
+						{
+							for ($i=0; $i < $nbCat ; $i++) 
+								{?> 
+									<form method="post" action="">
+										Categorie :<br /> <input type="text" name="upCat" placeholder="<?php echo $categorie[$i][1]; ?>"><br />
+										<input id="buttonAdmin" type="submit" name="updateCategorie<?php echo $categorie[$i][0]; ?>" value="Modifier">
+										<input id="buttonAdmin" type="submit" name="deleteCategorie<?php echo $categorie[$i][0]; ?>" value="Supprimer">
+										<br><br>
+									</form>
+									<?php
+
+									$idCat = $categorie[$i][0];
+									$nomCat = $categorie[$i][1];
+
+									if (isset($_POST["updateCategorie$idCat"]) AND strlen($_POST['upCat']) != 0) 
+									{
+
+										$nameCategorie = $bdd->execute("SELECT nom FROM categorie WHERE nom = '".$_POST['upCat']."' ");
+										if (empty($nameCategorie)) 
+										{
+											$requeteUpdateCat = $bdd->executeonly("UPDATE categorie set nom = '".$_POST['upCat']."' WHERE nom = '".$nomCat."' ");
+											header('location:admin.php');
+										}
+										else
+										{
+											echo "Ce nom existe";
+										}
 
 
 
-				if (!empty($categorie)) 
-				{
-					for ($i=0; $i < $nbCat ; $i++) 
-						{?> 
-							<form method="post" action="">
-								Categorie :<br /> <input type="text" name="upCat" placeholder="<?php echo $categorie[$i][1]; ?>"><br />
-								<input id="buttonAdmin" type="submit" name="updateCategorie<?php echo $categorie[$i][0]; ?>" value="Modifier">
-								<input id="buttonAdmin" type="submit" name="deleteCategorie<?php echo $categorie[$i][0]; ?>" value="Supprimer">
-								<br><br>
-							</form>
-							<?php
+									}
+									if (isset($_POST["deleteCategorie$idCat"])) 
+									{
+										$requeteDeleteCat = $bdd->executeonly("DELETE FROM categorie WHERE id = '".$idCat."'");
 
-							$idCat = $categorie[$i][0];
-							$nomCat = $categorie[$i][1];
+										header('location:admin.php');
 
-							if (isset($_POST["updateCategorie$idCat"]) AND strlen($_POST['upCat']) != 0) 
+									}
+								}
+							}
+							else
 							{
+								echo "Aucune Categorie";
+							}
+							?>
+						</div>
 
-								$nameCategorie = $bdd->execute("SELECT nom FROM categorie WHERE nom = '".$_POST['upCat']."' ");
-								if (empty($nameCategorie)) 
-								{
-									$requeteUpdateCat = $bdd->executeonly("UPDATE categorie set nom = '".$_POST['upCat']."' WHERE nom = '".$nomCat."' ");
-									header('location:admin.php');
+						<div id="listeIngredient">
+
+							<?php
+							if (!empty($ingredients)) 
+							{
+								for ($i=0; $i < $nbIngredients ; $i++) 
+									{?> 
+										<form method="post" action="">
+											Ingredient :<br /> <input type="text" name="upIngredients" placeholder="<?php echo $ingredients[$i][1]; ?>"><br />
+											<input id="buttonAdmin" type="submit" name="updateIngredients<?php echo $ingredients[$i][0]; ?>" value="Modifier">
+											<input id="buttonAdmin" type="submit" name="deleteIngredients<?php echo $ingredients[$i][0]; ?>" value="Supprimer">
+											<br><br>
+										</form>
+										<?php
+
+										$idIngredients = $ingredients[$i][0];
+										$nomIngredients = $ingredients[$i][1];
+
+										if (isset($_POST["updateIngredients$idIngredients"]) AND strlen($_POST['upIngredients']) != 0) 
+										{
+
+											$nameIngredient = $bdd->execute("SELECT nom FROM ingredients WHERE nom = '".$_POST['upIngredients']."' ");
+											if (empty($nameIngredient)) 
+											{
+												$requeteUpdateIngredients = $bdd->executeonly("UPDATE ingredients set nom = '".$_POST['upIngredients']."' WHERE nom = '".$nomIngredients."' ");
+												header('location:admin.php');
+											}
+											else
+											{
+												echo "Ce nom existe";
+											}
+
+
+
+										}
+										if (isset($_POST["deleteIngredients$idIngredients"])) 
+										{
+											$requeteDeleteCat = $bdd->executeonly("DELETE FROM ingredients WHERE id = '".$idIngredients."'");
+
+											header('location:admin.php');
+
+										}
+									}
 								}
 								else
 								{
-									echo "Ce nom existe";
+									echo "Aucun ingredient";
 								}
 
 
-
-							}
-							if (isset($_POST["deleteCategorie$idCat"])) 
-							{
-								$requeteDeleteCat = $bdd->executeonly("DELETE FROM categorie WHERE id = '".$idCat."'");
-
-								header('location:admin.php');
-
-							}
-						}
-					}
-					else
-					{
-						echo "PAS DE CATEGORIE";
-					}
-					?>
+								?>
+							</div>
 				</section>
+			</section>
 
 
 
@@ -153,12 +237,9 @@ $nbPlats = count($plats);
 
 						Prix :<br /> <input type="number" step="0.01" name="prixProduit" required><br /><br />
 
-						IMG : <br /><input type="file" name="imgProduit" required><br /><br />
+						IMG 1 : <br /><input type="file" name="img1Produit" required><br /><br />
 
-
-						Viande :  OUI <input type="radio" name="viande" value="oui">
-						NON <input type="radio" name="viande" value="non">
-						<br /><br />
+						IMG 2 :<br /><input type="file" name="img2Produit" required><br /><br />
 
 
 						Categorie : <br /><select type='post' name="categorie">
@@ -191,60 +272,97 @@ $nbPlats = count($plats);
 
 
 
-							$viande = $_POST['viande'] ;
+							
 
 
 
 
-							if (isset($_FILES['imgProduit']) AND !empty($_FILES['imgProduit'])) 
+							if (isset($_FILES['img1Produit']) AND !empty($_FILES['img1Produit'])) 
 							{
 
 								$tailleMax = 2097152 ;
 								$extensionsValides = $arrayName = array('jpg', 'jpeg', 'png');
-								if ($_FILES['imgProduit']['size'] <= $tailleMax) 
+								if ($_FILES['img1Produit']['size'] <= $tailleMax) 
 								{
 
-									$extensionsUpload = strtolower(substr(strrchr($_FILES['imgProduit']['name'], '.'), 1));
+									$extensionsUpload = strtolower(substr(strrchr($_FILES['img1Produit']['name'], '.'), 1));
 									if (in_array($extensionsUpload, $extensionsValides)) 
 									{
-										$chemin = "photoProduit/".$_POST['nameProduit'].".".$extensionsUpload;
+										$chemin = "photoProduit/".$_FILES['img1Produit']['name'];
 
-										$deplacement = move_uploaded_file($_FILES['imgProduit']['tmp_name'], $chemin);
+										$deplacement = move_uploaded_file($_FILES['img1Produit']['tmp_name'], $chemin);
 
 										if ($deplacement) 
 										{
-											$img = $_POST['nameProduit'].".".$extensionsUpload;
+											$img1 = $_FILES['img1Produit']['name'];
 										}
 										else
 										{
-											echo "Erreur durant l'importation de votre photo de profil" ;
+											echo "Erreur durant l'importation de votre photo de profil (1)" ;
 										}
 									}
 									else
 									{
-										echo "Votre photo de profil doit être au format jpg, jpeg ou png. ";
+										echo "Votre photo de profil doit être au format jpg, jpeg ou png. (1) ";
 									}
 
 								}
 								else
 								{
-									echo "Votre photo de profil ne doit pas dépasser 2Mo" ;
+									echo "Votre photo de profil ne doit pas dépasser 2Mo (1)" ;
+								}
+							}
+
+							if (isset($_FILES['img2Produit']) AND !empty($_FILES['img2Produit'])) 
+							{
+
+								$tailleMax = 2097152 ;
+								$extensionsValides = $arrayName = array('jpg', 'jpeg', 'png');
+								if ($_FILES['img2Produit']['size'] <= $tailleMax) 
+								{
+
+									$extensionsUpload = strtolower(substr(strrchr($_FILES['img2Produit']['name'], '.'), 1));
+									if (in_array($extensionsUpload, $extensionsValides)) 
+									{
+										$chemin = "photoProduit/".$_FILES['img2Produit']['name'];
+
+										$deplacement = move_uploaded_file($_FILES['img2Produit']['tmp_name'], $chemin);
+
+										if ($deplacement) 
+										{
+											$img2 = $_FILES['img2Produit']['name'];
+										}
+										else
+										{
+											echo "Erreur durant l'importation de votre photo de profil (2)" ;
+										}
+									}
+									else
+									{
+										echo "Votre photo de profil doit être au format jpg, jpeg ou png. (2) ";
+									}
+
+								}
+								else
+								{
+									echo "Votre photo de profil ne doit pas dépasser 2Mo  (2)" ;
 								}
 							}
 
 
-
-							if (!empty($img)) 
+							
+							if (!empty($img1) && !empty($img2)) 
 							{
-								if ($produit->addProduit($nom, $description, $prix, $id_categorie[0]['id'], $img, $viande, $bdd) == "newProduit") 
+								if ($produit->addProduit($nom, $description, $prix, $id_categorie[0]['id'], $img1, $img2, $bdd) == "newProduit") 
 								{
 									echo "PRODUIT AJOUTER";
+									header('location:admin.php');	
 								}
-								elseif ($produit->addProduit($nom, $description, $prix, $id_categorie[0]['id'], $img, $viande, $bdd) == "produitExist") 
+								elseif ($produit->addProduit($nom, $description, $prix, $id_categorie[0]['id'], $img1, $img2, $bdd) == "produitExist") 
 								{
 									echo "CE NOM EXISTE";
 								}
-								elseif ($produit->addProduit($nom, $description, $prix, $id_categorie[0]['id'], $img, $viande, $bdd) == "info") 
+								elseif ($produit->addProduit($nom, $description, $prix, $id_categorie[0]['id'], $img1, $img2, $bdd) == "info") 
 								{
 									echo "Veuillez remplir tout les champ";
 								}
@@ -279,8 +397,8 @@ $nbPlats = count($plats);
 									<td>Description</td>
 									<td>Prix</td>
 									<td>Categorie</td>
-									<td>Photo</td>
-									<td>Viande</td>
+									<td>IMG 1</td>
+									<td>IMG 2</td>
 									<td></td>
 									<td></td>
 								</tr>
@@ -296,8 +414,8 @@ $nbPlats = count($plats);
 											<td data-title="Description"><?php echo $plats[$i][2];  ?></td>
 											<td  data-title="Prix" class="numeric"><?php echo $plats[$i][4];  ?></td>
 											<td  data-title="Categorie"><?php echo $plats[$i][8];  ?></td>
-											<td  data-title="Photo"><img src="photoProduit/<?php echo $plats[$i][5] ?>" width="100"></td>
-											<td  data-title="Viande"><?php echo $plats[$i][6];  ?></td>
+											<td  data-title="Photo1"><img src="photoProduit/<?php echo $plats[$i][5] ?>" width="100"></td>
+											<td  data-title="Photo2"><img src="photoProduit/<?php echo $plats[$i][6] ?>" width="100"></td>
 											<td><input type="submit" name="modifierProduit<?php echo $plats[$i][0]; ?>" value="Modifier" ></td>
 											<td><input type="submit" name="deleteProduit<?php echo $plats[$i][0];  ?>" value="Supprimer" ></td>
 										</tr>
@@ -307,7 +425,7 @@ $nbPlats = count($plats);
 										$updateProduit = $bdd->execute("SELECT * FROM plats INNER JOIN categorie ON plats.id_categorie = categorie.id WHERE plats.id = '$idProduits'");
 
 
-
+										var_dump($updateProduit);
 
 										if (isset($_POST["deleteProduit$idProduits"])) 
 										{
@@ -326,8 +444,11 @@ $nbPlats = count($plats);
 											<input type="text" name="updateNameProduit" placeholder="<?php echo $updateProduit[0][1];  ?>">
 											<input type="textarea" name="updateDescriptionProduit" placeholder="<?php echo $updateProduit[0][2];  ?>">
 											<input type="number" step="0.01" name="updatePrixProduit" placeholder="<?php echo $updateProduit[0][4];  ?>">
+											<input type="file" name="updateImg1Produit">
+											<input type="file" name="updateImg2Produit">
+
 											Categorie : <select type='post' name="updateCategorie">
-												<option>.....</option>
+												<option></option>
 												<?php
 												for ($i  =0; $i < $nbCat; $i++) 
 													{?> 
@@ -338,9 +459,8 @@ $nbPlats = count($plats);
 													?>
 
 												</select>
-												<input type="file" name="updateImgProduit">
-												Viande :  OUI <input type="radio" name="updateViandeProduit" value="oui">
-												NON <input type="radio" name="updateViandeProduit" value="non">
+												
+												
 
 												<input type="submit" name="modifier2Produit<?php echo $updateProduit[0][0]; ?>" value="Modifier" >						
 
@@ -360,62 +480,90 @@ $nbPlats = count($plats);
 
 
 												$id_categorieUpdate = $bdd->execute("SELECT * FROM categorie WHERE nom = '".$_POST['updateCategorie']."' ");
-												var_dump($id_categorieUpdate);
+												
 
 												if (empty($id_categorieUpdate)) 
 												{
-													$id_categorieUpdate = $updateProduit[0][3];
+													$id_categorieUpdate = $updateProduit[0][4];
 												}
 
 
-												if (!empty($_POST['updateViandeProduit'])) 
-												{
-													$updateViande = $_POST['updateViandeProduit'];
-												}
-												else
-												{
-													$updateViande = $updateProduit[0][6];
-												}
+												
+
+											
 
 
-
-
-												if ($_FILES['updateImgProduit']['size'] == 0 && $_FILES['updateImgProduit']['error'] == 0)
+												if ($_FILES['updateImg1Produit']['size'] <= 2097152 && $_FILES['updateImg1Produit']['error'] == 0)
 												{
 
 													$tailleMax = 2097152 ;
 													$extensionsValides = $arrayName = array('jpg', 'jpeg', 'png');
-													if ($_FILES['updateImgProduit']['size'] <= $tailleMax) 
+													if ($_FILES['updateImg1Produit']['size'] <= $tailleMax) 
 													{
 
-														$extensionsUpload = strtolower(substr(strrchr($_FILES['updateImgProduit']['name'], '.'), 1));
+														$extensionsUpload = strtolower(substr(strrchr($_FILES['updateImg1Produit']['name'], '.'), 1));
 														if (in_array($extensionsUpload, $extensionsValides)) 
 														{
-															if (!empty($updateNom)) 
-															{
+															
 
-																$chemin = "photoProduit/".$_POST['updateNameProduit'].".".$extensionsUpload;
-															}
-															else
-															{
-
-																$chemin = "photoProduit/".$updateProduit[0][1].".".$extensionsUpload;
-															}
+															$chemin = "photoProduit/".$_FILES['updateImg1Produit']['name'];
 
 
 
-															$deplacement = move_uploaded_file($_FILES['updateImgProduit']['tmp_name'], $chemin);
+															$deplacement = move_uploaded_file($_FILES['updateImg1Produit']['tmp_name'], $chemin);
 
 															if ($deplacement) 
 															{
-																if (!empty($updateNom))
-																{
-																	$updateImg = $_POST['updateNameProduit'].".".$extensionsUpload;
-																}
-																else
-																{
-																	$updateImg = $updateProduit[0][1].".".$extensionsUpload;
-																}
+																$updateImg1 = $_FILES['updateImg1Produit']['name'];
+																
+																
+															}
+															else
+															{
+																echo "Erreur durant l'importation de votre photo de profil" ;
+															}
+														}
+														else
+														{
+															echo "Votre photo de profil doit être au format jpg, jpeg ou png. ";
+
+														}
+
+													}
+													else
+													{
+														echo "Votre photo de profil ne doit pas dépasser 2Mo" ;
+													}
+												}
+												else
+												{
+													$updateImg1 ='';
+												}
+												
+
+
+												if ($_FILES['updateImg2Produit']['size'] <= 2097152 && $_FILES['updateImg2Produit']['error'] == 0)
+												{
+
+													$tailleMax = 2097152 ;
+													$extensionsValides = $arrayName = array('jpg', 'jpeg', 'png');
+													if ($_FILES['updateImg2Produit']['size'] <= $tailleMax) 
+													{
+
+														$extensionsUpload = strtolower(substr(strrchr($_FILES['updateImg2Produit']['name'], '.'), 1));
+														if (in_array($extensionsUpload, $extensionsValides)) 
+														{
+															
+															$chemin = "photoProduit/".$_FILES['updateImg2Produit']['name'];
+
+															$deplacement = move_uploaded_file($_FILES['updateImg2Produit']['tmp_name'], $chemin);
+
+															if ($deplacement) 
+															{
+																
+																$updateImg2 = $_FILES['updateImg2Produit']['name'];
+																
+																
 
 															}
 															else
@@ -436,51 +584,29 @@ $nbPlats = count($plats);
 													}
 												}
 												else
-												{									
-													$updateImg = $updateProduit[0][5];										
+												{
+													$updateImg2 = '';
 												}
-
-
-
-
+												
+												
+												
 
 												$nameProduit = $bdd->execute("SELECT nom FROM plats WHERE nom = '$updateNom'");
 
-
+											
+												
 												if (!empty($nameProduit)) 
 												{
 													echo "Ce nom de plats existe";
 												}
-												elseif($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $id_categorieUpdate[0][0] , $updateImg, $updateViande, $id, $bdd) == "nameChange") 
+												else
 												{
-													echo "Le nom a changer";
+													$produit->updateProduits($updateNom, $updateDescription, $updatePrix, $id_categorieUpdate[0][0], $updateImg1, $updateImg2, $id, $bdd);
 												}
+												
 
-												if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $id_categorieUpdate[0][0], $updateImg, $updateViande, $id, $bdd) == "descriptionChange") 
-												{
-													echo "La description a changer";
-												}
-
-												if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $id_categorieUpdate[0][0], $updateImg, $updateViande, $id, $bdd) == "prixChange") 
-												{
-													echo "Le prix a changer";
-												}
-
-												if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $id_categorieUpdate[0][0], $updateImg, $updateViande, $id, $bdd) == "updateChange") 
-												{
-													echo "La Categorie a changer";
-												}
-
-												if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $id_categorieUpdate[0][0], $updateImg, $updateViande, $id, $bdd) == "imgChange") 
-												{
-													echo "La photo a changer";
-												}
-
-												if ($produit->updateProduits($updateNom, $updateDescription, $updatePrix, $id_categorieUpdate[0][0], $updateImg, $updateViande, $id, $bdd) == "viandeChange") 
-												{
-													echo "La viande a changer";
-												}
-
+												
+												
 											}
 
 											?>
@@ -493,9 +619,9 @@ $nbPlats = count($plats);
 								</table>
 
 							</form>
-				</section>
+						</section>
 
-				
+
 
 
 
@@ -509,8 +635,10 @@ $nbPlats = count($plats);
 						?>
 
 
-					</main>
+	</main>
+</body>
+</html>
 
-				</body>
-				<?php ob_end_flush(); ?>
-				</html>
+<?php
+ob_end_flush(); 
+?>

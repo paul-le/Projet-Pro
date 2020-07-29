@@ -71,6 +71,13 @@
             }
         }
 
+        public function addPreferenceGout($idUser, $boeuf, $poulet, $dinde, $saumon, $thon, $calamar, $haricots, $pommeDeTerre, $brocolis, $avocat, $choux, $salade, $poivrons, $champignons, $lentilles, $bdd)
+        {
+
+            $gout = $bdd->executeonly("INSERT INTO goututilisateurs (id_utilisateur, boeuf, poulet, dinde, saumon, thon, calamar, haricots, pommeDeTerre, brocolis, avocat, choux, salade, poivrons, champignons, lentilles) VALUES ('$idUser', '$boeuf', '$poulet', '$dinde', '$saumon', '$thon', '$calamar', '$haricots', '$pommeDeTerre', '$brocolis', '$avocat', '$choux', '$salade', '$poivrons', '$champignons', '$lentilles')");
+            echo "INSERT INTO goututilisateurs (id_utlisateur, boeuf, poulet, dinde, saumon, thon, calamar, haricots, pommeDeTerre, brocolis, avocat, choux, salade, poivrons, champignons, lentilles) VALUES ('$idUser', '$boeuf', '$poulet', '$dinde', '$saumon', '$thon', '$calamar', '$haricots', '$pommeDeTerre', '$brocolis', '$avocat', '$choux', '$salade', '$poivrons', '$champignons', '$lentilles')";
+        }
+
         
 
         public function disconnect()

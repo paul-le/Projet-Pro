@@ -40,27 +40,28 @@
         </div>
         <div class="dropdown"><br><br>
             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Viande
+            Filtre
             </button><br><br>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <div class="form-check" id="radioCheckLesDeux">
-                    <input class="form-check-input" type="radio" name="radioViande" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                        Les deux
-                    </label>
-                </div>
-                <div class="form-check" id="radioCheckAvec">
-                    <input class="form-check-input" type="radio" name="radioViande" id="exampleRadios2" value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
-                        Avec
-                    </label>
-                </div>
-                <div class="form-check" id="radioCheckSans">
-                    <input class="form-check-input" type="radio" name="radioViande" id="exampleRadios3" value="option3">
-                    <label class="form-check-label" for="exampleRadios3">
-                        Sans
-                    </label>
-                </div>
+            <?php
+
+                $i = 0;
+                $requeteListeIngre = "SELECT * FROM ingredients";
+                $queryListeIngre = mysqli_query($connexion, $requeteListeIngre);
+                $resultatListeIngre = mysqli_fetch_all($queryListeIngre);
+                $countIngre = count($resultatListeIngre);
+                
+                while($i != $countIngre){ ?>
+                  
+                
+                    <div class="form-check" id="radioCheckLesDeux">
+                        <input class="form-check-input ingredient-filter" type="radio" name="radioViande" id="exampleRadios<?php echo "".$resultatListeIngre[$i][1].""; ?>" value="<?php echo "".$resultatListeIngre[$i][1].""; ?>">
+                        <label class="form-check-label" for="exampleRadios<?php echo "".$resultatListeIngre[$i][1].""; ?>">
+                            <?php echo "".$resultatListeIngre[$i][1].""; ?>
+                        </label>
+                    </div>
+                
+            <?php $i++; } ?>
             </div>
         </div>
         <div class="d-flex flex-row col-12" id="generationPlats">
@@ -107,7 +108,7 @@
       <img src="<?php echo "photoProduit/".$resultatPlats[$i][5].""; ?>" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="<?php echo "photoProduit/".$resultatPlats[$i][5].""; ?>" class="d-block w-100" alt="...">
+      <img src="<?php echo "photoProduit/".$resultatPlats[$i][6].""; ?>" class="d-block w-100" alt="...">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -121,7 +122,7 @@
 </div>
                                     <h3 id="titrePlats1"><?php echo "".$resultatPlats[$i][1].""; ?></h3>
                                     <div id="above-modal-desc">
-                                        <p id="valeur-nutri-p">Valeur nutritionnelle</p>
+                                        <p id="valeur-nutri-p"> Valeur nutritionnelle</p>
                                         <?php echo "<p id='prix-dans-modal'>".$resultatPlats[$i][4]." € </p>"; ?>
                                         <button type="button" id="toasty" class="btn btn-success">Ajouter au panier</button>
                                     </div>

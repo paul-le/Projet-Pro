@@ -1,16 +1,18 @@
-function selectViande(){
-    var les_deux = getElementById("exampleRadios1");
-    var avec_viande = getElementById("exampleRadios2");
-    var sans_viande = getElementById("exampleRadios3");
+// function selectViande(){
+//     var les_deux = getElementById("exampleRadios1");
+//     var avec_viande = getElementById("exampleRadios2");
+//     var sans_viande = getElementById("exampleRadios3");
 
-}
+// }
 
-$("#radioCheckLesDeux").click(function(){
+$(".ingredient-filter").click(function(){
 
+    var ingre = $(this).val();
+    console.log(ingre);
     $.ajax({
         url : 'affichage_produits.php',
         type : 'POST',
-        data : {isVegan : ""},
+        data : {isVegan : ingre},
         success : function(data){
             var resultat = jQuery.parseJSON(data);
             $("#generationPlats").empty()
