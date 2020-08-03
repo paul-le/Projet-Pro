@@ -16,7 +16,7 @@
 		$showPanier = $bdd->execute("SELECT * FROM panier INNER JOIN plats ON panier.id_produit = plats.id INNER JOIN utilisateurs ON panier.id_utilisateur = utilisateurs.id WHERE id_utilisateur = '".$_SESSION['id']."'") ;
 
 
-		
+		var_dump($showPanier);
 		
 	}
 
