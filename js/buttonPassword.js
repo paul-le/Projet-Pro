@@ -1,7 +1,7 @@
 $(document).ready(function(){
- 
-			$('.show-password').click(function() {
-				if($(this).prev('input').prop('type') == 'password') {
+	
+	$('.show-password').click(function() {
+		if($(this).prev('input').prop('type') == 'password') {
 					//Si c'est un input type password
 					$(this).prev('input').prop('type','text');
 					$(this).text('cacher');
@@ -11,5 +11,5 @@ $(document).ready(function(){
 					$(this).text('afficher');
 				}
 			});
- 
-		});
+	
+});
