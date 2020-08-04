@@ -425,7 +425,7 @@ ob_start();
 										$updateProduit = $bdd->execute("SELECT * FROM plats INNER JOIN categorie ON plats.id_categorie = categorie.id WHERE plats.id = '$idProduits'");
 
 
-										var_dump($updateProduit);
+										
 
 										if (isset($_POST["deleteProduit$idProduits"])) 
 										{

@@ -7,8 +7,9 @@
 		private $description = NULL ;
 		private $prix = NULL ;
 		private $id_categorie = NULL ;
-		private $img = NULL ;
-		private $viande = NULL ;
+		private $img1 = NULL ;
+		private $img2 = NULL ;
+		
 
 		
 		public function addCategorie($nom, $bdd)
