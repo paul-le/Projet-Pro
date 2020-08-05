@@ -298,12 +298,12 @@ ob_start();
 										}
 										else
 										{
-											echo "Erreur durant l'importation de votre photo de profil (1)" ;
+											echo "Erreur durant l'importation de votre photo (1)" ;
 										}
 									}
 									else
 									{
-										echo "Votre photo de profil doit être au format jpg, jpeg ou png. (1) ";
+										echo "Votre photo doit être au format jpg, jpeg ou png. (1) ";
 									}
 
 								}
@@ -334,12 +334,11 @@ ob_start();
 										}
 										else
 										{
-											echo "Erreur durant l'importation de votre photo de profil (2)" ;
-										}
+											echo "Erreur durant l'importation de votre photo";								}
 									}
 									else
 									{
-										echo "Votre photo de profil doit être au format jpg, jpeg ou png. (2) ";
+										echo "Votre photo doit être au format jpg, jpeg ou png. (2) ";
 									}
 
 								}
@@ -520,12 +519,12 @@ ob_start();
 															}
 															else
 															{
-																echo "Erreur durant l'importation de votre photo de profil" ;
+																echo "Erreur durant l'importation de votre photo" ;
 															}
 														}
 														else
 														{
-															echo "Votre photo de profil doit être au format jpg, jpeg ou png. ";
+															echo "Votre photo doit être au format jpg, jpeg ou png. ";
 
 														}
 
@@ -568,12 +567,12 @@ ob_start();
 															}
 															else
 															{
-																echo "Erreur durant l'importation de votre photo de profil" ;
+																echo "Erreur durant l'importation de votre photo" ;
 															}
 														}
 														else
 														{
-															echo "Votre photo de profil doit être au format jpg, jpeg ou png. ";
+															echo "Votre photo doit être au format jpg, jpeg ou png. ";
 
 														}
 
